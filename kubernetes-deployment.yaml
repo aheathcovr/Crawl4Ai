@@ -1,0 +1,225 @@
+# Kubernetes deployment for Healthcare Facility Scraper
+# For use with Digital Ocean Kubernetes or other K8s clusters
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: healthcare-scraper
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: scraper-config
+  namespace: healthcare-scraper
+data:
+  sites.txt: |
+    # Healthcare facility websites to scrape
+    https://lcca.com
+    https://genesishcc.com
+    https://brookdaleliving.com
+    https://sunriseseniorliving.com
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: scraper-output
+  namespace: healthcare-scraper
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: healthcare-scraper-job
+  namespace: healthcare-scraper
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: scraper
+        image: healthcare-scraper:latest
+        imagePullPolicy: Never
+        command: ["python", "main.py"]
+        args: 
+          - "--urls-file"
+          - "/app/input/sites.txt"
+          - "--output"
+          - "/app/output"
+          - "--formats"
+          - "json"
+          - "csv"
+          - "excel"
+          - "--log-level"
+          - "INFO"
+        
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        
+        volumeMounts:
+        - name: output-volume
+          mountPath: /app/output
+        - name: config-volume
+          mountPath: /app/input
+        
+        env:
+        - name: PYTHONUNBUFFERED
+          value: "1"
+        - name: PLAYWRIGHT_BROWSERS_PATH
+          value: "/ms-playwright"
+      
+      volumes:
+      - name: output-volume
+        persistentVolumeClaim:
+          claimName: scraper-output
+      - name: config-volume
+        configMap:
+          name: scraper-config
+
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: healthcare-scraper-cron
+  namespace: healthcare-scraper
+spec:
+  schedule: "0 2 * * *"  # Daily at 2 AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: scraper
+            image: healthcare-scraper:latest
+            imagePullPolicy: Never
+            command: ["python", "main.py"]
+            args: 
+              - "--urls-file"
+              - "/app/input/sites.txt"
+              - "--output"
+              - "/app/output"
+              - "--formats"
+              - "json"
+              - "csv"
+              - "--log-level"
+              - "INFO"
+            
+            resources:
+              requests:
+                memory: "1Gi"
+                cpu: "500m"
+              limits:
+                memory: "2Gi"
+                cpu: "1000m"
+            
+            volumeMounts:
+            - name: output-volume
+              mountPath: /app/output
+            - name: config-volume
+              mountPath: /app/input
+          
+          volumes:
+          - name: output-volume
+            persistentVolumeClaim:
+              claimName: scraper-output
+          - name: config-volume
+            configMap:
+              name: scraper-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: scraper-results-service
+  namespace: healthcare-scraper
+spec:
+  selector:
+    app: scraper-nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scraper-nginx
+  namespace: healthcare-scraper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scraper-nginx
+  template:
+    metadata:
+      labels:
+        app: scraper-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: output-volume
+          mountPath: /usr/share/nginx/html/results
+          readOnly: true
+        - name: nginx-config
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+      
+      volumes:
+      - name: output-volume
+        persistentVolumeClaim:
+          claimName: scraper-output
+      - name: nginx-config
+        configMap:
+          name: nginx-config
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: healthcare-scraper
+data:
+  nginx.conf: |
+    events {
+        worker_connections 1024;
+    }
+    http {
+        include /etc/nginx/mime.types;
+        default_type application/octet-stream;
+        
+        server {
+            listen 80;
+            server_name _;
+            root /usr/share/nginx/html;
+            
+            location / {
+                autoindex on;
+                autoindex_exact_size off;
+                autoindex_localtime on;
+            }
+            
+            location ~* \.(json|csv|xlsx?)$ {
+                add_header Access-Control-Allow-Origin *;
+            }
+        }
+    }
+

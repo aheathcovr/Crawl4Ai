@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  healthcare-scraper:
+    build: .
+    container_name: healthcare-scraper
+    restart: unless-stopped
+    
+    # Environment variables
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+    
+    # Volume mounts for persistent data
+    volumes:
+      - ./output:/app/output
+      - ./logs:/app/logs
+      - ./input:/app/input
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+        reservations:
+          memory: 1G
+          cpus: '0.5'
+    
+    # Override default command for interactive use
+    # Uncomment one of these based on your use case:
+    
+    # For single site scraping:
+    # command: ["python", "main.py", "--url", "https://lcca.com", "--output", "/app/output"]
+    
+    # For batch processing:
+    # command: ["python", "main.py", "--urls-file", "/app/input/sites.txt", "--output", "/app/output", "--formats", "json", "csv"]
+    
+    # For interactive shell (development):
+    # command: ["tail", "-f", "/dev/null"]
+    # stdin_open: true
+    # tty: true
+
+  # Optional: Add a web server to serve results
+  nginx:
+    image: nginx:alpine
+    container_name: scraper-nginx
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./output:/usr/share/nginx/html/results:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - healthcare-scraper
+    profiles:
+      - web
+
+volumes:
+  output:
+  logs:
+  input:
+
