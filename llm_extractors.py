@@ -96,7 +96,11 @@ class LLMFacilityExtractor:
         If no valid facilities are found, return {"facilities": []}.
         """
         
-        llm_config = LLMConfig(
+        from crawler_manager import EnhancedCrawlerSession
+        from crawl_config import LLM_CONFIG
+        
+        session = EnhancedCrawlerSession()
+        llm_config = session.create_llm_config(
             provider="openai",
             api_token=None  # Will use environment variable OPENAI_API_KEY
         )
@@ -154,7 +158,10 @@ class LLMFacilityExtractor:
         Return URLs as complete, absolute URLs when possible.
         """
         
-        llm_config = LLMConfig(
+        from crawler_manager import EnhancedCrawlerSession
+        
+        session = EnhancedCrawlerSession()
+        llm_config = session.create_llm_config(
             provider="openai",
             api_token=None
         )
@@ -175,10 +182,13 @@ class LLMFacilityExtractor:
             # Use LLM extraction strategy
             extraction_strategy = self.create_facility_extraction_strategy()
             
-            result = await crawler.arun(
+            from crawler_manager import EnhancedCrawlerSession
+            
+            session = EnhancedCrawlerSession()
+            result = await session.crawl_with_cache(
                 url=url,
                 extraction_strategy=extraction_strategy,
-                chunking_strategy=RegexChunking(patterns=[r'\n\n', r'\. '])
+                chunking_strategy=session.get_html_chunking_strategy()
             )
             
             if result.success and result.extracted_content:

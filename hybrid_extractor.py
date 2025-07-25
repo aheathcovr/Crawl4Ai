@@ -19,6 +19,9 @@ from hybrid_llm_navigator import HybridLLMNavigator, NavigationTarget, SiteStruc
 from schema_based_extractor import SchemaBasedExtractor, HealthcareSchemaLibrary
 from free_validation import FreeValidationSystem
 from healthcare_scraper import FacilityInfo
+from crawler_manager import EnhancedCrawlerSession
+from crawl_config import EXTRACTION_CONFIG, SCRAPING_LIMITS
+from deduplicator import FacilityDeduplicator
 
 
 @dataclass
@@ -53,12 +56,15 @@ class HybridExtractor:
     def __init__(self, 
                  openrouter_api_key: str,
                  enable_validation: bool = True,
-                 llm_model_preference: str = "balanced"):
+                 llm_model_preference: str = "balanced",
+                 crawler_session: Optional[EnhancedCrawlerSession] = None):
         
         self.navigator = HybridLLMNavigator(openrouter_api_key)
         self.schema_extractor = SchemaBasedExtractor(use_llm_fallback=True)
         self.validator = FreeValidationSystem() if enable_validation else None
         self.logger = logging.getLogger(__name__)
+        self.crawler_session = crawler_session or EnhancedCrawlerSession()
+        self.deduplicator = FacilityDeduplicator()
         
         # Model preferences for different tasks
         self.model_preferences = {
@@ -112,12 +118,13 @@ class HybridExtractor:
                 target_facilities, method = await self._extract_from_target(target, site_structure)
                 
                 if target_facilities:
-                    all_facilities.extend(target_facilities)
+                    # Deduplicate before adding
+                    unique_facilities = self.deduplicator.deduplicate_facilities(target_facilities)
+                    all_facilities.extend(unique_facilities)
                     extraction_methods_used.append(method)
-                    self.logger.info(f"✅ Found {len(target_facilities)} facilities using {method}")
+                    self.logger.info(f"✅ Found {len(unique_facilities)} unique facilities using {method} (deduped from {len(target_facilities)})")
                 
-                # Don't overload the server
-                await asyncio.sleep(1.0)
+                # Rate limiting is handled by Crawl4AI, no manual sleep needed
             
             # Phase 4: Validation (if enabled)
             validation_reports = []
@@ -174,7 +181,7 @@ class HybridExtractor:
         )
         
         # Select top targets, but limit to avoid overloading
-        max_targets = 5 if site_structure.site_type == "corporate_chain" else 2
+        max_targets = EXTRACTION_CONFIG["max_targets_corporate"] if site_structure.site_type == "corporate_chain" else EXTRACTION_CONFIG["max_targets_single"]
         selected_targets = targets[:max_targets]
         
         # Always include the main URL if not already included
@@ -232,9 +239,15 @@ class HybridExtractor:
         if not target.extraction_hints and not target.css_selectors:
             return [], "no_llm_schema"
         
-        async with AsyncWebCrawler(headless=True, verbose=False) as crawler:
-            # Get page content
-            result = await crawler.arun(url=target.url)
+        # Check for cached schema first
+        cached_schema = self.crawler_session.get_cached_schema(target.url)
+        
+        if cached_schema:
+            schema = cached_schema
+            self.logger.info(f"Using cached schema for {self.crawler_session.get_domain(target.url)}")
+        else:
+            # Get page content to generate schema
+            result = await self.crawler_session.crawl_with_cache(url=target.url)
             if not result.success:
                 return [], "page_load_failed"
             
@@ -244,13 +257,17 @@ class HybridExtractor:
             if not schema:
                 return [], "schema_generation_failed"
             
-            # Use the generated schema for fast extraction
-            extraction_strategy = JsonCssExtractionStrategy(schema, verbose=False)
-            
-            extract_result = await crawler.arun(
-                url=target.url,
-                extraction_strategy=extraction_strategy
-            )
+            # Cache the schema for future use
+            self.crawler_session.cache_schema(target.url, schema)
+        
+        # Use the generated/cached schema for fast extraction
+        extraction_strategy = JsonCssExtractionStrategy(schema, verbose=False)
+        
+        extract_result = await self.crawler_session.crawl_with_cache(
+            url=target.url,
+            extraction_strategy=extraction_strategy,
+            chunking_strategy=self.crawler_session.get_html_chunking_strategy()
+        )
             
             if extract_result.success and extract_result.extracted_content:
                 try:
