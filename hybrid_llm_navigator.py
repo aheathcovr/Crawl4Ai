@@ -212,7 +212,7 @@ class HybridLLMNavigator:
             
             # Extract navigation and content structure
             html_content = result.html
-            page_text = result.cleaned_text[:8000]  # Limit for LLM processing
+            page_text = getattr(result, 'text', getattr(result, 'markdown', result.html))[:8000]  # Limit for LLM processing
             
             # Use LLM to analyze site structure
             analysis_prompt = f"""
@@ -473,7 +473,7 @@ Return only the JSON schema, no explanation.
 Analyze this healthcare website's navigation to find all pages that might contain facility information.
 
 URL: {url}
-Page Content: {result.cleaned_text[:4000]}
+Page Content: {getattr(result, 'text', getattr(result, 'markdown', result.html))[:4000]}
 
 Look for:
 1. Navigation menus with facility-related links
