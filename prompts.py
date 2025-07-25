@@ -26,21 +26,21 @@ NEGATIVE INDICATORS (avoid these):
 - Generic "Contact Us" pages (corporate office only)
 
 Please analyze and provide a JSON response with:
-{
+{{
     "site_type": "corporate_chain" | "individual_facility" | "directory",
     "navigation_targets": [
-        {
+        {{
             "url": "full URL to target page",
             "page_type": "facility_listing" | "individual_facility" | "search_page",
             "confidence": 0.0-1.0,
             "description": "what's expected on this page",
             "css_selectors": ["suggested selectors for facility containers"]
-        }
+        }}
     ],
     "expected_facility_count": estimated number,
     "navigation_strategy": "description of best approach",
     "confidence": 0.0-1.0
-}
+}}
 
 Focus on pages that list multiple facilities or contain detailed facility information.
 Return only valid JSON.
@@ -145,7 +145,7 @@ IMPORTANT:
 - Remove duplicates
 
 Return URLs as complete, absolute URLs.
-Format: {{"facility_links": [...]}
+Format: {{"facility_links": ["url1", "url2", ...]}}
 """
 
 # Schema Generation Prompt

@@ -1,0 +1,192 @@
+2025-07-25 23:51:21,124 - __main__ - INFO - 🚀 Starting hybrid healthcare facility scraping
+2025-07-25 23:51:21,124 - __main__ - INFO - 🧠 Model preference: fast
+2025-07-25 23:51:21,124 - __main__ - INFO - ✅ Validation: enabled
+2025-07-25 23:51:21,124 - __main__ - INFO - ⏱️  Request delay: 3.0s
+2025-07-25 23:51:21,124 - __main__ - INFO - 📦 Batch size: 1
+2025-07-25 23:51:21,129 - __main__ - INFO - 🌐 Processing 1 URLs
+2025-07-25 23:51:21,129 - __main__ - INFO - 📦 Processing batch 1/1
+2025-07-25 23:51:21,129 - __main__ - INFO - 🎯 Hybrid scraping: https://lcca.com
+2025-07-25 23:51:21,129 - hybrid_extractor - INFO - 🚀 Starting hybrid extraction: https://lcca.com
+2025-07-25 23:51:21,129 - hybrid_extractor - INFO - 🧠 Phase 1: LLM site analysis
+2025-07-25 23:51:21,129 - hybrid_llm_navigator - INFO - 🧠 Analyzing site structure: https://lcca.com
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com                                                   
+| ✓ | ⏱: 0.72s 
+[SCRAPE].. ◆ https://lcca.com                                                   
+| ✓ | ⏱: 0.02s 
+[COMPLETE] ● https://lcca.com                                                   
+| ✓ | ⏱: 0.74s 
+2025-07-25 23:51:35,414 - hybrid_llm_navigator - INFO - ✅ Site analysis complete: corporate_chain, 2 targets found
+2025-07-25 23:51:35,467 - hybrid_extractor - INFO - 📋 Selected 3 extraction targets
+2025-07-25 23:51:35,467 - hybrid_extractor - INFO - 🔍 Extracting from: https://lcca.com/locations/
+[INIT].... → Crawl4AI 0.7.2 
+[INIT].... → Crawl4AI 0.7.2 
+2025-07-25 23:51:36,128 - crawler_manager - INFO - Initialized crawler pool with 2 crawlers
+[FETCH]... ↓ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.80s 
+[SCRAPE].. ◆ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.02s 
+[COMPLETE] ● https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.83s 
+2025-07-25 23:51:36,961 - hybrid_llm_navigator - INFO - 🛠️ Generating extraction schema for: https://lcca.com/locations/
+2025-07-25 23:51:45,746 - hybrid_llm_navigator - WARNING - Failed to parse schema generation response
+[FETCH]... ↓ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.86s 
+[SCRAPE].. ◆ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.02s 
+[COMPLETE] ● https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.89s 
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.85s 
+[SCRAPE].. ◆ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.02s 
+[COMPLETE] ● https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.88s 
+2025-07-25 23:51:47,946 - schema_based_extractor - INFO - Selected schema 'standard_facility_listing' based on URL pattern
+2025-07-25 23:51:47,946 - schema_based_extractor - INFO - Using schema-based extraction: standard_facility_listing
+[FETCH]... ↓ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.67s 
+[SCRAPE].. ◆ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.05s 
+[COMPLETE] ● https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.73s 
+2025-07-25 23:51:48,679 - schema_based_extractor - INFO - Trying regex-based extraction
+2025-07-25 23:51:48,681 - schema_based_extractor - INFO - Falling back to LLM extraction
+[FETCH]... ↓ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.66s 
+[SCRAPE].. ◆ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.05s 
+[COMPLETE] ● https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.72s 
+2025-07-25 23:51:49,403 - schema_based_extractor - WARNING - All extraction methods failed for https://lcca.com/locations/
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.81s 
+[SCRAPE].. ◆ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.03s 
+[COMPLETE] ● https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.84s 
+2025-07-25 23:51:50,793 - hybrid_extractor - ERROR - Extraction failed for https://lcca.com/locations/: name 're' is not defined
+2025-07-25 23:51:50,793 - hybrid_extractor - INFO - 🔍 Extracting from: https://lcca.com/locations/state
+2025-07-25 23:51:50,793 - hybrid_extractor - INFO - Using cached schema for lcca.com
+[FETCH]... ↓ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.50s 
+[SCRAPE].. ◆ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.51s 
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.72s 
+[SCRAPE].. ◆ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.73s 
+2025-07-25 23:51:52,376 - schema_based_extractor - INFO - Selected schema 'standard_facility_listing' based on URL pattern
+2025-07-25 23:51:52,376 - schema_based_extractor - INFO - Using schema-based extraction: standard_facility_listing
+[FETCH]... ↓ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.40s 
+[SCRAPE].. ◆ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.42s 
+2025-07-25 23:51:52,802 - schema_based_extractor - INFO - Trying regex-based extraction
+2025-07-25 23:51:52,804 - schema_based_extractor - INFO - Falling back to LLM extraction
+[FETCH]... ↓ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.37s 
+[SCRAPE].. ◆ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.38s 
+2025-07-25 23:51:53,194 - schema_based_extractor - WARNING - All extraction methods failed for https://lcca.com/locations/state
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.72s 
+[SCRAPE].. ◆ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.73s 
+2025-07-25 23:51:54,388 - hybrid_extractor - ERROR - Extraction failed for https://lcca.com/locations/state: name 're' is not defined
+2025-07-25 23:51:54,388 - hybrid_extractor - INFO - 🔍 Extracting from: https://lcca.com
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com                                                   
+| ✓ | ⏱: 0.66s 
+[SCRAPE].. ◆ https://lcca.com                                                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com                                                   
+| ✓ | ⏱: 0.68s 
+2025-07-25 23:51:55,400 - schema_based_extractor - WARNING - No suitable schema found for this page
+2025-07-25 23:51:55,400 - schema_based_extractor - INFO - Trying regex-based extraction
+2025-07-25 23:51:55,402 - schema_based_extractor - INFO - Falling back to LLM extraction
+[FETCH]... ↓ https://lcca.com                                                   
+| ✓ | ⏱: 0.40s 
+[SCRAPE].. ◆ https://lcca.com                                                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com                                                   
+| ✓ | ⏱: 0.41s 
+2025-07-25 23:51:55,822 - schema_based_extractor - WARNING - All extraction methods failed for https://lcca.com
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com                                                   
+| ✓ | ⏱: 0.70s 
+[SCRAPE].. ◆ https://lcca.com                                                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com                                                   
+| ✓ | ⏱: 0.71s 
+2025-07-25 23:51:57,009 - hybrid_extractor - ERROR - Extraction failed for https://lcca.com: name 're' is not defined
+2025-07-25 23:51:57,009 - hybrid_extractor - INFO - ✅ Hybrid extraction complete: 0 facilities, 35.9s
+
+🎉 Hybrid scraping completed!
+📊 Session Statistics:
+   URLs processed: 1
+   Successful extractions: 0
+   Failed extractions: 1
+   Success rate: 0.0%
+   Total facilities found: 0
+   Average facilities per URL: 0.0
+   Total processing time: 35.9s
+   Average time per URL: 35.9s
+   Session duration: 35.9s
+
+🔧 Extraction Method Performance:
+   LLM navigation success rate: 100.0%
+   Schema extraction success rate: 0.0%
+   Regex extraction success rate: 0.0%
+   LLM fallback rate: 0.0%
+
+📁 Output files:
+   JSON: lcca_working_test/hybrid_healthcare_facilities_20250725_235157.json
+
+🤖 Model Configuration:
+   Preference: fast
+   API: OpenRouter
+Exception ignored in: <function BaseSubprocessTransport.__del__ at 0x7f59e1007a60>
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/asyncio/base_subprocess.py", line 130, in __del__
+    self.close()
+  File "/usr/lib/python3.13/asyncio/base_subprocess.py", line 107, in close
+    proto.pipe.close()
+  File "/usr/lib/python3.13/asyncio/unix_events.py", line 802, in close
+    self.write_eof()
+  File "/usr/lib/python3.13/asyncio/unix_events.py", line 788, in write_eof
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 827, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 550, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Exception ignored in: <function BaseSubprocessTransport.__del__ at 0x7f59e1007a60>
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/asyncio/base_subprocess.py", line 130, in __del__
+    self.close()
+  File "/usr/lib/python3.13/asyncio/base_subprocess.py", line 107, in close
+    proto.pipe.close()
+  File "/usr/lib/python3.13/asyncio/unix_events.py", line 802, in close
+    self.write_eof()
+  File "/usr/lib/python3.13/asyncio/unix_events.py", line 788, in write_eof
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 827, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 550, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed

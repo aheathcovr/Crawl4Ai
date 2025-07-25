@@ -1,0 +1,96 @@
+{
+  "facilities": [],
+  "validation_reports": [],
+  "scraping_results": [
+    {
+      "url": "https://lcca.com",
+      "success": true,
+      "facilities": [],
+      "extraction_method": "no_extraction",
+      "processing_time": 35.879894495010376,
+      "confidence_score": 0.9,
+      "llm_navigation_used": true,
+      "validation_reports": [],
+      "metadata": {
+        "site_structure": {
+          "main_url": "https://lcca.com",
+          "navigation_targets": [
+            {
+              "url": "https://lcca.com/locations/",
+              "page_type": "facility_listing",
+              "confidence": 0.9,
+              "description": "This URL suggests a page dedicated to listing multiple Life Care facility locations.",
+              "expected_facility_count": null,
+              "css_selectors": [
+                ".facility-list > li",
+                ".location-card",
+                ".address-block"
+              ],
+              "extraction_hints": null
+            },
+            {
+              "url": "https://lcca.com/locations/state",
+              "page_type": "search_page",
+              "confidence": 0.8,
+              "description": "This URL pattern indicates a state-level search or listing of facilities within a specific state.",
+              "expected_facility_count": null,
+              "css_selectors": [
+                "#state-facilities > li",
+                ".state-location-card",
+                ".state-address-block"
+              ],
+              "extraction_hints": null
+            }
+          ],
+          "site_type": "corporate_chain",
+          "total_expected_facilities": 200,
+          "navigation_strategy": "Navigate to the 'Find a Location' link in the main menu, which leads to a facility listing page. From there, either browse the list of facilities or use the state search feature to narrow down the list to a specific region. Expect to find either a complete list of all facilities or a search interface that allows filtering by state or other criteria.",
+          "analysis_confidence": 0.9
+        },
+        "extraction_targets": [
+          {
+            "url": "https://lcca.com/locations/",
+            "page_type": "facility_listing",
+            "confidence": 0.9,
+            "description": "This URL suggests a page dedicated to listing multiple Life Care facility locations.",
+            "expected_facility_count": null,
+            "css_selectors": [
+              ".facility-list > li",
+              ".location-card",
+              ".address-block"
+            ],
+            "extraction_hints": null
+          },
+          {
+            "url": "https://lcca.com/locations/state",
+            "page_type": "search_page",
+            "confidence": 0.8,
+            "description": "This URL pattern indicates a state-level search or listing of facilities within a specific state.",
+            "expected_facility_count": null,
+            "css_selectors": [
+              "#state-facilities > li",
+              ".state-location-card",
+              ".state-address-block"
+            ],
+            "extraction_hints": null
+          },
+          {
+            "url": "https://lcca.com",
+            "page_type": "main_page",
+            "confidence": 0.7,
+            "description": "Main page fallback",
+            "expected_facility_count": null,
+            "css_selectors": null,
+            "extraction_hints": null
+          }
+        ],
+        "extraction_methods_used": [],
+        "model_preference": "fast"
+      },
+      "timestamp": "2025-07-25T23:51:57.009600"
+    }
+  ],
+  "total_facilities": 0,
+  "generation_date": "2025-07-25T23:51:57.009743",
+  "extraction_type": "hybrid_llm_algorithm"
+}

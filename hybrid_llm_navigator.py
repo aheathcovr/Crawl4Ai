@@ -233,7 +233,19 @@ class HybridLLMNavigator:
                 raise Exception(f"LLM analysis failed: {llm_response['error']}")
             
             try:
-                analysis_data = json.loads(llm_response["content"])
+                # Clean and extract JSON from LLM response
+                content = llm_response["content"].strip()
+                
+                # Try to extract JSON if it's embedded in markdown code blocks
+                json_start = content.find('{')
+                json_end = content.rfind('}') + 1
+                
+                if json_start >= 0 and json_end > json_start:
+                    json_content = content[json_start:json_end]
+                    analysis_data = json.loads(json_content)
+                else:
+                    # Fallback to direct parsing
+                    analysis_data = json.loads(content)
                 
                 # Convert to NavigationTarget objects
                 navigation_targets = []
