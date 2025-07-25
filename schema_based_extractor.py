@@ -10,7 +10,7 @@ import re
 from typing import Dict, List, Any, Optional, Union
 from dataclasses import dataclass, asdict
 
-from crawl4ai import AsyncWebCrawler
+from crawl4ai import AsyncWebCrawler, LLMConfig
 from crawl4ai.extraction_strategy import (
     JsonCssExtractionStrategy, 
     RegexExtractionStrategy,
@@ -364,7 +364,7 @@ class SchemaBasedExtractor:
             
             # Get HTML content if not provided
             if not html_content:
-                result = await crawler.arun(url=url, bypass_cache=True)
+                result = await crawler.arun(url=url)
                 if not result.success:
                     self.logger.error(f"Failed to crawl {url}: {result.error_message}")
                     return []
@@ -412,8 +412,7 @@ class SchemaBasedExtractor:
             
             result = await crawler.arun(
                 url=url,
-                extraction_strategy=extraction_strategy,
-                bypass_cache=True
+                extraction_strategy=extraction_strategy
             )
             
             if result.success and result.extracted_content:
@@ -568,8 +567,12 @@ class SchemaBasedExtractor:
                 }
             }
             
+            llm_config = LLMConfig(
+                provider="ollama/llama3.2:3b"  # Use local model to avoid costs
+            )
+            
             extraction_strategy = LLMExtractionStrategy(
-                provider="ollama/llama3.2:3b",  # Use local model to avoid costs
+                llm_config=llm_config,
                 schema=llm_schema,
                 extraction_type="schema",
                 instruction="Extract ONLY healthcare facilities that are explicitly mentioned. Do not infer or generate any information. Mark confidence level for each extraction."
@@ -577,8 +580,7 @@ class SchemaBasedExtractor:
             
             result = await crawler.arun(
                 url=url,
-                extraction_strategy=extraction_strategy,
-                bypass_cache=True
+                extraction_strategy=extraction_strategy
             )
             
             if result.success and result.extracted_content:

@@ -9,7 +9,7 @@ import re
 from typing import Dict, List, Optional, Any
 from dataclasses import asdict
 
-from crawl4ai import AsyncWebCrawler
+from crawl4ai import AsyncWebCrawler, LLMConfig
 from crawl4ai.extraction_strategy import LLMExtractionStrategy, JsonCssExtractionStrategy
 from crawl4ai.chunking_strategy import RegexChunking
 
@@ -96,13 +96,16 @@ class LLMFacilityExtractor:
         If no valid facilities are found, return {"facilities": []}.
         """
         
-        return LLMExtractionStrategy(
+        llm_config = LLMConfig(
             provider="openai",
-            api_token=None,  # Will use environment variable OPENAI_API_KEY
+            api_token=None  # Will use environment variable OPENAI_API_KEY
+        )
+        
+        return LLMExtractionStrategy(
+            llm_config=llm_config,
             schema=self.facility_schema,
             extraction_type="schema",
-            instruction=instruction,
-            model=self.model_name
+            instruction=instruction
         )
     
     def create_facility_listing_strategy(self) -> LLMExtractionStrategy:
@@ -151,13 +154,16 @@ class LLMFacilityExtractor:
         Return URLs as complete, absolute URLs when possible.
         """
         
-        return LLMExtractionStrategy(
+        llm_config = LLMConfig(
             provider="openai",
-            api_token=None,
+            api_token=None
+        )
+        
+        return LLMExtractionStrategy(
+            llm_config=llm_config,
             schema=listing_schema,
             extraction_type="schema",
-            instruction=instruction,
-            model=self.model_name
+            instruction=instruction
         )
     
     async def extract_facilities_from_page(self, crawler: AsyncWebCrawler, url: str) -> List[FacilityInfo]:
@@ -172,8 +178,7 @@ class LLMFacilityExtractor:
             result = await crawler.arun(
                 url=url,
                 extraction_strategy=extraction_strategy,
-                chunking_strategy=RegexChunking(patterns=[r'\n\n', r'\. ']),
-                bypass_cache=True
+                chunking_strategy=RegexChunking(patterns=[r'\n\n', r'\. '])
             )
             
             if result.success and result.extracted_content:
@@ -213,8 +218,7 @@ class LLMFacilityExtractor:
             
             result = await crawler.arun(
                 url=url,
-                extraction_strategy=extraction_strategy,
-                bypass_cache=True
+                extraction_strategy=extraction_strategy
             )
             
             if result.success and result.extracted_content:
@@ -386,20 +390,22 @@ class SmartFacilityDiscovery:
         - Site type (corporate chain, single facility, regional network, etc.)
         """
         
-        extraction_strategy = LLMExtractionStrategy(
+        llm_config = LLMConfig(
             provider="openai",
-            api_token=None,
+            api_token=None
+        )
+        
+        extraction_strategy = LLMExtractionStrategy(
+            llm_config=llm_config,
             schema=structure_schema,
             extraction_type="schema",
-            instruction=instruction,
-            model=self.model_name
+            instruction=instruction
         )
         
         try:
             result = await crawler.arun(
                 url=base_url,
-                extraction_strategy=extraction_strategy,
-                bypass_cache=True
+                extraction_strategy=extraction_strategy
             )
             
             if result.success and result.extracted_content:

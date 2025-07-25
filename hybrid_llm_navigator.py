@@ -205,7 +205,7 @@ class HybridLLMNavigator:
         
         async with AsyncWebCrawler(headless=True, verbose=False) as crawler:
             # Get initial page content
-            result = await crawler.arun(url=url, bypass_cache=True)
+            result = await crawler.arun(url=url)
             
             if not result.success:
                 raise Exception(f"Failed to load {url}: {result.error_message}")
@@ -342,7 +342,7 @@ Return only valid JSON.
         
         if not html_content:
             async with AsyncWebCrawler(headless=True, verbose=False) as crawler:
-                result = await crawler.arun(url=url, bypass_cache=True)
+                result = await crawler.arun(url=url)
                 if not result.success:
                     return []
                 html_content = result.html
@@ -463,7 +463,7 @@ Return only the JSON schema, no explanation.
         self.logger.info(f"🗺️ Smart navigation discovery: {url}")
         
         async with AsyncWebCrawler(headless=True, verbose=False) as crawler:
-            result = await crawler.arun(url=url, bypass_cache=True)
+            result = await crawler.arun(url=url)
             
             if not result.success:
                 return []

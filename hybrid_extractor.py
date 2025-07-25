@@ -234,7 +234,7 @@ class HybridExtractor:
         
         async with AsyncWebCrawler(headless=True, verbose=False) as crawler:
             # Get page content
-            result = await crawler.arun(url=target.url, bypass_cache=True)
+            result = await crawler.arun(url=target.url)
             if not result.success:
                 return [], "page_load_failed"
             
@@ -249,8 +249,7 @@ class HybridExtractor:
             
             extract_result = await crawler.arun(
                 url=target.url,
-                extraction_strategy=extraction_strategy,
-                bypass_cache=True
+                extraction_strategy=extraction_strategy
             )
             
             if extract_result.success and extract_result.extracted_content:
@@ -295,7 +294,7 @@ class HybridExtractor:
         """Extract using regex patterns"""
         
         async with AsyncWebCrawler(headless=True, verbose=False) as crawler:
-            result = await crawler.arun(url=target.url, bypass_cache=True)
+            result = await crawler.arun(url=target.url)
             
             if not result.success:
                 return [], "page_load_failed"
