@@ -1,0 +1,45 @@
+# Healthcare Facility Scraper - Best Practices Requirements
+# Optimized for Crawl4AI best practices with free validation
+
+# Core Crawl4AI and web scraping
+crawl4ai>=0.7.1
+playwright>=1.40.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+requests>=2.31.0
+aiohttp>=3.9.0
+
+# Free validation libraries
+phonenumbers>=8.13.0          # Phone number validation and parsing
+geopy>=2.3.0                  # Free geocoding with Nominatim
+validators>=0.22.0            # URL, email, and general validation
+pydantic>=2.0.0               # Data validation and parsing
+
+# Data processing and export
+pandas>=2.0.0                 # CSV export and data manipulation
+openpyxl>=3.1.0              # Excel file support
+numpy>=1.24.0                # Numerical operations
+
+# Async and performance
+asyncio-throttle>=1.0.2       # Rate limiting for async operations
+aiofiles>=23.0.0              # Async file operations
+
+# Logging and monitoring
+psutil>=5.9.0                 # System resource monitoring
+python-dotenv>=1.0.0          # Environment variable management
+
+# Optional: Local LLM support (if using LLM fallback)
+# ollama>=0.1.0               # Local LLM integration
+# openai>=1.0.0               # OpenAI API (if using cloud LLM)
+
+# Development and testing
+pytest>=7.4.0                # Testing framework
+pytest-asyncio>=0.21.0       # Async testing support
+black>=23.0.0                 # Code formatting
+flake8>=6.0.0                 # Code linting
+
+# System utilities
+click>=8.1.0                  # CLI framework
+rich>=13.0.0                  # Rich terminal output
+tqdm>=4.66.0                  # Progress bars
+

@@ -1,0 +1,145 @@
+# Optimized Docker Compose for 2 vCPU / 4GB RAM Digital Ocean Droplet
+version: '3.8'
+
+services:
+  # Main healthcare scraper with resource limits
+  healthcare-scraper:
+    build:
+      context: .
+      dockerfile: Dockerfile.enhanced
+    container_name: healthcare-scraper-optimized
+    volumes:
+      - ./output:/app/output
+      - ./input:/app/input
+      - ./logs:/app/logs
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+      - OLLAMA_BASE_URL=http://ollama:11434
+    # Resource limits optimized for 4GB RAM droplet
+    deploy:
+      resources:
+        limits:
+          memory: 2.5G      # Leave 1.5GB for system and other services
+          cpus: '1.5'       # Leave 0.5 CPU for system
+        reservations:
+          memory: 1G
+          cpus: '0.5'
+    depends_on:
+      - ollama
+    networks:
+      - scraper-network
+    profiles:
+      - scraper
+      - optimized
+
+  # Lightweight Ollama service for 4GB RAM
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama-optimized
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+      - OLLAMA_MAX_LOADED_MODELS=1    # Only keep one model in memory
+      - OLLAMA_NUM_PARALLEL=1         # Limit parallel requests
+    # Resource limits for Ollama
+    deploy:
+      resources:
+        limits:
+          memory: 1.2G      # Enough for small models
+          cpus: '0.8'
+        reservations:
+          memory: 512M
+          cpus: '0.2'
+    networks:
+      - scraper-network
+    profiles:
+      - ollama
+      - optimized
+
+  # Lightweight model downloader for small models only
+  model-downloader-light:
+    build:
+      context: .
+      dockerfile: Dockerfile.enhanced
+    container_name: model-downloader-light
+    volumes:
+      - ollama-data:/root/.ollama
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    depends_on:
+      - ollama
+    networks:
+      - scraper-network
+    profiles:
+      - setup-light
+    # Only download models that fit in 4GB RAM
+    command: >
+      sh -c "
+        echo 'Waiting for Ollama to start...' &&
+        sleep 15 &&
+        echo 'Downloading phi3:mini (1GB RAM)...' &&
+        curl -X POST http://ollama:11434/api/pull -d '{\"name\":\"phi3:mini\"}' &&
+        echo 'Downloading llama3.2:3b (2GB RAM)...' &&
+        curl -X POST http://ollama:11434/api/pull -d '{\"name\":\"llama3.2:3b\"}' &&
+        echo 'Light models downloaded successfully'
+      "
+
+  # Optional: Nginx for results (very lightweight)
+  nginx-light:
+    image: nginx:alpine
+    container_name: scraper-nginx-light
+    ports:
+      - "8080:80"
+    volumes:
+      - ./output:/usr/share/nginx/html/results:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    # Minimal resource usage
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+          cpus: '0.1'
+    networks:
+      - scraper-network
+    profiles:
+      - web-light
+
+  # Resource monitor service
+  resource-monitor:
+    image: alpine:latest
+    container_name: resource-monitor
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+    command: >
+      sh -c "
+        while true; do
+          echo '=== Resource Usage ===' &&
+          echo 'Memory:' && cat /host/proc/meminfo | grep -E 'MemTotal|MemAvailable' &&
+          echo 'CPU:' && cat /host/proc/loadavg &&
+          echo 'Disk:' && df -h / &&
+          echo '===================' &&
+          sleep 60
+        done
+      "
+    deploy:
+      resources:
+        limits:
+          memory: 32M
+          cpus: '0.05'
+    profiles:
+      - monitor
+
+volumes:
+  ollama-data:
+    driver: local
+
+networks:
+  scraper-network:
+    driver: bridge
+

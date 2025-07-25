@@ -1,0 +1,58 @@
+2025-07-24T19:12:50.858670349Z [34m╭────────────[34m[30m[44m git repo clone [0m[0m[34m───────────╼[0m
+2025-07-24T19:12:50.858729667Z [34m│[0m [34m › fetching app source code[0m
+2025-07-24T19:12:50.858732839Z [34m│[0m => Selecting branch "main"
+2025-07-24T19:12:50.858735323Z [34m│[0m => Checking out commit "a24f1e0c8892d5b098f91f48c119d83af3f4e81c"
+2025-07-24T19:12:50.858737278Z [34m│[0m 
+2025-07-24T19:12:50.858739012Z [34m│[0m [32m ✔ cloned repo to [35m/.app_platform_workspace[0m[0m
+2025-07-24T19:12:50.858741473Z [34m╰────────────────────────────────────────╼[0m
+2025-07-24T19:12:50.858743448Z 
+2025-07-24T19:12:51.831307730Z [34m╭────────────[34m[30m[44m dockerfile build [0m[0m[34m───────────╼[0m
+2025-07-24T19:12:51.846963967Z [34m│[0m [34m › using dockerfile [35m/.app_platform_workspace/Dockerfile[0m[0m
+2025-07-24T19:12:51.848873061Z [34m│[0m [34m › using build context [35m/.app_platform_workspace//[0m[0m
+2025-07-24T19:12:51.849057868Z [34m│[0m 
+2025-07-24T19:12:51.902511157Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest python:3.11-slim   
+2025-07-24T19:12:51.902548977Z [34m│[0m [36mINFO[0m[0000] Retrieving image library/python:3.11-slim from registry mirror <registry-uri-0> 
+2025-07-24T19:12:52.142144840Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest python:3.11-slim   
+2025-07-24T19:12:52.142181391Z [34m│[0m [36mINFO[0m[0000] Returning cached image manifest              
+2025-07-24T19:12:52.147764406Z [34m│[0m [36mINFO[0m[0000] Built cross stage deps: map[]                
+2025-07-24T19:12:52.147789711Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest python:3.11-slim   
+2025-07-24T19:12:52.147792089Z [34m│[0m [36mINFO[0m[0000] Returning cached image manifest              
+2025-07-24T19:12:52.147793922Z [34m│[0m [36mINFO[0m[0000] Retrieving image manifest python:3.11-slim   
+2025-07-24T19:12:52.147795908Z [34m│[0m [36mINFO[0m[0000] Returning cached image manifest              
+2025-07-24T19:12:52.147797857Z [34m│[0m [36mINFO[0m[0000] Executing 0 build triggers                   
+2025-07-24T19:12:52.147948123Z [34m│[0m [36mINFO[0m[0000] Building stage 'python:3.11-slim' [idx: '0', base-idx: '-1'] 
+2025-07-24T19:12:52.148358634Z [34m│[0m [36mINFO[0m[0000] Checking for cached layer <registry-uri-1> 
+2025-07-24T19:12:52.209521614Z [34m│[0m [36mINFO[0m[0000] No cached layer found for cmd RUN apt-get update && apt-get install -y     wget     gnupg     ca-certificates     procps     xvfb     libnss3     libatk-bridge2.0-0     libdrm2     libxkbcommon0     libgtk-3-0     libgbm1     libasound2     libgstreamer1.0-0     libgtk-4-1     libgraphene-1.0-0     libatomic1     libxslt1.1     libwoff2dec1.0.2     libevent-2.1-7     libenchant-2-2     libsecret-1-0     libhyphen0     libharfbuzz-icu0     && rm -rf /var/lib/apt/lists/* 
+2025-07-24T19:12:52.212125186Z [34m│[0m [36mINFO[0m[0000] Cmd: USER                                    
+2025-07-24T19:12:52.212252068Z [34m│[0m [36mINFO[0m[0000] Unpacking rootfs as cmd RUN apt-get update && apt-get install -y     wget     gnupg     ca-certificates     procps     xvfb     libnss3     libatk-bridge2.0-0     libdrm2     libxkbcommon0     libgtk-3-0     libgbm1     libasound2     libgstreamer1.0-0     libgtk-4-1     libgraphene-1.0-0     libatomic1     libxslt1.1     libwoff2dec1.0.2     libevent-2.1-7     libenchant-2-2     libsecret-1-0     libhyphen0     libharfbuzz-icu0     && rm -rf /var/lib/apt/lists/* requires it. 
+2025-07-24T19:12:54.408330182Z [34m│[0m [36mINFO[0m[0002] Initializing snapshotter ...                 
+2025-07-24T19:12:54.408612058Z [34m│[0m [36mINFO[0m[0002] Taking snapshot of full filesystem...        
+2025-07-24T19:12:55.159160051Z [34m│[0m [36mINFO[0m[0003] ENV PYTHONUNBUFFERED=1                       
+2025-07-24T19:12:55.165665647Z [34m│[0m [36mINFO[0m[0003] No files changed in this command, skipping snapshotting. 
+2025-07-24T19:12:55.165928355Z [34m│[0m [36mINFO[0m[0003] ENV PYTHONDONTWRITEBYTECODE=1                
+2025-07-24T19:12:55.165931932Z [34m│[0m [36mINFO[0m[0003] No files changed in this command, skipping snapshotting. 
+2025-07-24T19:12:55.165934040Z [34m│[0m [36mINFO[0m[0003] ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright  
+2025-07-24T19:12:55.165936001Z [34m│[0m [36mINFO[0m[0003] No files changed in this command, skipping snapshotting. 
+2025-07-24T19:12:55.166316919Z [34m│[0m [36mINFO[0m[0003] RUN apt-get update && apt-get install -y     wget     gnupg     ca-certificates     procps     xvfb     libnss3     libatk-bridge2.0-0     libdrm2     libxkbcommon0     libgtk-3-0     libgbm1     libasound2     libgstreamer1.0-0     libgtk-4-1     libgraphene-1.0-0     libatomic1     libxslt1.1     libwoff2dec1.0.2     libevent-2.1-7     libenchant-2-2     libsecret-1-0     libhyphen0     libharfbuzz-icu0     && rm -rf /var/lib/apt/lists/* 
+2025-07-24T19:12:55.246546546Z [34m│[0m [36mINFO[0m[0003] Cmd: /bin/sh                                 
+2025-07-24T19:12:55.246746284Z [34m│[0m [36mINFO[0m[0003] Args: [-c apt-get update && apt-get install -y     wget     gnupg     ca-certificates     procps     xvfb     libnss3     libatk-bridge2.0-0     libdrm2     libxkbcommon0     libgtk-3-0     libgbm1     libasound2     libgstreamer1.0-0     libgtk-4-1     libgraphene-1.0-0     libatomic1     libxslt1.1     libwoff2dec1.0.2     libevent-2.1-7     libenchant-2-2     libsecret-1-0     libhyphen0     libharfbuzz-icu0     && rm -rf /var/lib/apt/lists/*] 
+2025-07-24T19:12:55.246920616Z [34m│[0m [36mINFO[0m[0003] Running: [/bin/sh -c apt-get update && apt-get install -y     wget     gnupg     ca-certificates     procps     xvfb     libnss3     libatk-bridge2.0-0     libdrm2     libxkbcommon0     libgtk-3-0     libgbm1     libasound2     libgstreamer1.0-0     libgtk-4-1     libgraphene-1.0-0     libatomic1     libxslt1.1     libwoff2dec1.0.2     libevent-2.1-7     libenchant-2-2     libsecret-1-0     libhyphen0     libharfbuzz-icu0     && rm -rf /var/lib/apt/lists/*] 
+2025-07-24T19:12:55.283398856Z [34m│[0m Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+2025-07-24T19:12:55.293099173Z [34m│[0m Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+2025-07-24T19:12:55.293320432Z [34m│[0m Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+2025-07-24T19:12:55.362617941Z [34m│[0m Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8793 kB]
+2025-07-24T19:12:55.457398917Z [34m│[0m Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [756 B]
+2025-07-24T19:12:55.470199194Z [34m│[0m Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [272 kB]
+2025-07-24T19:12:56.475341720Z [34m│[0m Fetched 9320 kB in 1s (7761 kB/s)
+2025-07-24T19:12:57.031234984Z [34m│[0m Reading package lists...
+2025-07-24T19:12:57.457629478Z [34m│[0m Reading package lists...
+2025-07-24T19:12:57.585668872Z [34m│[0m Building dependency tree...
+2025-07-24T19:12:57.585701640Z [34m│[0m Reading state information...
+2025-07-24T19:12:57.660675550Z [34m│[0m E: Unable to locate package libwoff2dec1.0.2
+2025-07-24T19:12:57.660686837Z [34m│[0m E: Couldn't find any package by glob 'libwoff2dec1.0.2'
+2025-07-24T19:12:57.660689337Z [34m│[0m E: Couldn't find any package by regex 'libwoff2dec1.0.2'
+2025-07-24T19:12:57.661581116Z [34m│[0m error building image: error building stage: failed to execute command: waiting for process to exit: exit status 100
+2025-07-24T19:12:57.663630297Z [34m│[0m 
+2025-07-24T19:12:57.663838154Z [34m│[0m command exited with code 100
+2025-07-24T19:12:57.664395782Z [34m│[0m 
+2025-07-24T19:12:57.772252168Z [34m│[0m [31m ✘ build failed[0m

@@ -1,0 +1,66 @@
+# Healthcare Facility Scraper - Hybrid LLM + Algorithm Requirements
+# Optimized for LLM navigation + fast algorithmic extraction
+
+# Core Crawl4AI and web scraping
+crawl4ai>=0.7.1
+playwright>=1.40.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+requests>=2.31.0
+aiohttp>=3.9.0
+
+# LLM and AI integration
+openai>=1.0.0                 # OpenAI API compatibility (for OpenRouter)
+tiktoken>=0.5.0               # Token counting and management
+anthropic>=0.7.0              # Anthropic API (optional)
+
+# Free validation libraries
+phonenumbers>=8.13.0          # Phone number validation and parsing
+geopy>=2.3.0                  # Free geocoding with Nominatim
+validators>=0.22.0            # URL, email, and general validation
+pydantic>=2.0.0               # Data validation and parsing
+
+# Data processing and export
+pandas>=2.0.0                 # CSV/Excel export and data manipulation
+openpyxl>=3.1.0              # Excel file support
+xlsxwriter>=3.1.0            # Enhanced Excel writing
+numpy>=1.24.0                # Numerical operations
+
+# Async and performance
+asyncio-throttle>=1.0.2       # Rate limiting for async operations
+aiofiles>=23.0.0              # Async file operations
+tenacity>=8.2.0               # Retry logic for API calls
+
+# Text processing and extraction
+regex>=2023.0.0               # Advanced regex operations
+python-dateutil>=2.8.0       # Date parsing and handling
+fuzzywuzzy>=0.18.0           # Fuzzy string matching
+python-levenshtein>=0.21.0   # String distance calculations
+
+# Logging and monitoring
+psutil>=5.9.0                 # System resource monitoring
+python-dotenv>=1.0.0          # Environment variable management
+rich>=13.0.0                  # Rich terminal output
+tqdm>=4.66.0                  # Progress bars
+
+# HTTP and networking
+httpx>=0.25.0                 # Modern HTTP client
+urllib3>=2.0.0                # URL handling utilities
+
+# Configuration and utilities
+click>=8.1.0                  # CLI framework
+pyyaml>=6.0.0                 # YAML configuration support
+jsonschema>=4.19.0            # JSON schema validation
+
+# Optional: Local LLM support
+# ollama>=0.1.0               # Local LLM integration (if using local models)
+# transformers>=4.35.0        # Hugging Face transformers (if using local models)
+# torch>=2.0.0                # PyTorch (if using local models)
+
+# Development and testing
+pytest>=7.4.0                # Testing framework
+pytest-asyncio>=0.21.0       # Async testing support
+black>=23.0.0                 # Code formatting
+flake8>=6.0.0                 # Code linting
+mypy>=1.5.0                   # Type checking
+

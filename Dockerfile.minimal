@@ -1,0 +1,52 @@
+# Healthcare Facility Scraper - Minimal Dockerfile for Digital Ocean App Platform
+FROM python:3.11-slim
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+
+# Install essential system dependencies only
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg \
+    ca-certificates \
+    # Minimal Playwright dependencies
+    libnss3 \
+    libatk-bridge2.0-0 \
+    libdrm2 \
+    libxkbcommon0 \
+    libgtk-3-0 \
+    libgbm1 \
+    libasound2 \
+    libgstreamer1.0-0 \
+    libatomic1 \
+    libxslt1.1 \
+    libevent-2.1-7 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create app directory
+WORKDIR /app
+
+# Copy requirements first for better caching
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install Playwright browsers (only Chromium for smaller size)
+RUN playwright install chromium
+RUN playwright install-deps chromium
+
+# Copy application code
+COPY . .
+
+# Create output directory
+RUN mkdir -p /app/output
+
+# Make main script executable
+RUN chmod +x main.py
+
+# Default command for App Platform
+CMD ["python", "main.py", "--url", "https://lcca.com", "--output", "/app/output", "--formats", "json", "csv", "--log-level", "INFO"]
+
