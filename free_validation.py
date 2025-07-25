@@ -506,9 +506,31 @@ class FreeValidationSystem:
         self.website_validator = WebsiteValidator()
         self.email_validator = EmailValidator()
         self.logger = logging.getLogger(__name__)
+        
+        # Validation caches to avoid redundant checks
+        self.validation_cache: Dict[str, ValidationResult] = {}
+        self.seen_signatures: Set[str] = set()
+        
+        # Stats
+        self.validation_stats = {
+            "total_validated": 0,
+            "cache_hits": 0,
+            "geocoding_calls": 0,
+            "skipped_duplicates": 0
+        }
     
     async def validate_facility(self, facility_data: Dict[str, Any]) -> FacilityValidationReport:
         """Validate all fields of a healthcare facility"""
+        
+        # Check if we've already validated this exact facility (short-circuit)
+        signature = self._create_facility_signature(facility_data)
+        if signature in self.seen_signatures:
+            self.validation_stats["skipped_duplicates"] += 1
+            self.logger.debug(f"Skipping duplicate validation for {facility_data.get('name', 'Unknown')}")
+            return self._create_cached_report(facility_data)
+        
+        self.seen_signatures.add(signature)
+        self.validation_stats["total_validated"] += 1
         
         validation_results = []
         flags = []

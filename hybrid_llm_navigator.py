@@ -215,30 +215,12 @@ class HybridLLMNavigator:
             page_text = getattr(result, 'text', getattr(result, 'markdown', result.html))[:8000]  # Limit for LLM processing
             
             # Use LLM to analyze site structure
-            analysis_prompt = f"""
-Analyze this healthcare website to understand its structure and identify where facility information is located.
-
-Website URL: {url}
-Page Content: {page_text}
-
-Please analyze and provide a JSON response with:
-1. site_type: "corporate_chain", "individual_facility", or "directory"
-2. navigation_targets: List of URLs/sections where facility data might be found
-3. expected_facility_count: Estimated number of facilities
-4. navigation_strategy: How to best navigate this site
-5. confidence: Your confidence in this analysis (0-1)
-
-For each navigation target, include:
-- url: Full URL to the target page
-- page_type: Type of page ("facility_listing", "individual_facility", etc.)
-- confidence: Confidence this page contains facility data (0-1)
-- description: Brief description of what's expected on this page
-- css_selectors: Suggested CSS selectors for facility containers
-
-Focus on finding pages that list multiple healthcare facilities or contain detailed facility information.
-
-Return only valid JSON.
-"""
+            from prompts import SITE_STRUCTURE_ANALYSIS
+            
+            analysis_prompt = SITE_STRUCTURE_ANALYSIS.format(
+                url=url,
+                page_content=page_text
+            )
             
             messages = [
                 {"role": "system", "content": "You are an expert web scraping analyst specializing in healthcare websites. Analyze site structures to identify where facility data is located."},
@@ -392,35 +374,12 @@ Return a JSON array of sections found.
         
         self.logger.info(f"🛠️ Generating extraction schema for: {url}")
         
-        schema_prompt = f"""
-Create an optimized Crawl4AI extraction schema for this healthcare facility webpage.
-
-URL: {url}
-Sample HTML: {sample_html[:4000]}
-
-Generate a JSON CSS extraction schema with:
-1. baseSelector: CSS selector for facility containers
-2. fields: Array of field definitions for facility data
-
-Each field should have:
-- name: Field name (facility_name, address, phone, etc.)
-- selector: CSS selector relative to baseSelector
-- type: "text", "attribute", or "html"
-- attribute: If type is "attribute", specify which attribute
-- multiple: true if this field can have multiple values
-
-Focus on extracting:
-- Facility name
-- Address components (street, city, state, zip)
-- Phone number
-- Email
-- Website
-- Administrator/contact person
-- Services offered
-- Facility type
-
-Return only the JSON schema, no explanation.
-"""
+        from prompts import SCHEMA_GENERATION
+        
+        schema_prompt = SCHEMA_GENERATION.format(
+            url=url,
+            html_sample=sample_html[:4000]
+        )
         
         messages = [
             {"role": "system", "content": "You are an expert at creating Crawl4AI extraction schemas. Generate precise, working schemas for healthcare facility data."},
