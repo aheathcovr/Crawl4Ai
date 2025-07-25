@@ -408,7 +408,7 @@ class EnhancedHealthcareScraper:
             if self.use_llm:
                 # Step 1: Get main page content
                 self.logger.info("🧠 Analyzing website structure with LLM...")
-                result = await crawler.arun(url=self.base_url, bypass_cache=True)
+                result = await crawler.arun(url=self.base_url)
                 
                 if result.success:
                     # Analyze structure
@@ -434,7 +434,7 @@ class EnhancedHealthcareScraper:
                     for link_data in facility_links[:20]:  # Limit to avoid overwhelming
                         try:
                             self.logger.info(f"🏥 Extracting from: {link_data['name']}")
-                            page_result = await crawler.arun(url=link_data['url'], bypass_cache=True)
+                            page_result = await crawler.arun(url=link_data['url'])
                             
                             if page_result.success:
                                 facilities = await self.llm_extractor.extract_facilities_from_content(
@@ -450,7 +450,7 @@ class EnhancedHealthcareScraper:
                         if section.get('url'):
                             try:
                                 self.logger.info(f"📋 Processing facility section: {section['section_name']}")
-                                section_result = await crawler.arun(url=section['url'], bypass_cache=True)
+                                section_result = await crawler.arun(url=section['url'])
                                 
                                 if section_result.success:
                                     facilities = await self.llm_extractor.extract_facilities_from_content(

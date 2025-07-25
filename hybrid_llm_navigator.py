@@ -205,14 +205,14 @@ class HybridLLMNavigator:
         
         async with AsyncWebCrawler(headless=True, verbose=False) as crawler:
             # Get initial page content
-            result = await crawler.arun(url=url, bypass_cache=True)
+            result = await crawler.arun(url=url)
             
             if not result.success:
                 raise Exception(f"Failed to load {url}: {result.error_message}")
             
             # Extract navigation and content structure
             html_content = result.html
-            page_text = result.cleaned_text[:8000]  # Limit for LLM processing
+            page_text = getattr(result, 'text', getattr(result, 'markdown', result.html))[:8000]  # Limit for LLM processing
             
             # Use LLM to analyze site structure
             analysis_prompt = f"""
@@ -342,7 +342,7 @@ Return only valid JSON.
         
         if not html_content:
             async with AsyncWebCrawler(headless=True, verbose=False) as crawler:
-                result = await crawler.arun(url=url, bypass_cache=True)
+                result = await crawler.arun(url=url)
                 if not result.success:
                     return []
                 html_content = result.html
@@ -463,7 +463,7 @@ Return only the JSON schema, no explanation.
         self.logger.info(f"🗺️ Smart navigation discovery: {url}")
         
         async with AsyncWebCrawler(headless=True, verbose=False) as crawler:
-            result = await crawler.arun(url=url, bypass_cache=True)
+            result = await crawler.arun(url=url)
             
             if not result.success:
                 return []
@@ -473,7 +473,7 @@ Return only the JSON schema, no explanation.
 Analyze this healthcare website's navigation to find all pages that might contain facility information.
 
 URL: {url}
-Page Content: {result.cleaned_text[:4000]}
+Page Content: {getattr(result, 'text', getattr(result, 'markdown', result.html))[:4000]}
 
 Look for:
 1. Navigation menus with facility-related links
