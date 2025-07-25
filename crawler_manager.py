@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 import gc
 
 from crawl4ai import AsyncWebCrawler, LLMConfig
-from crawl4ai.chunking_strategy import HtmlTagChunking, RegexChunking
+from crawl4ai.chunking_strategy import RegexChunking, OverlappingWindowChunking
 
 from crawl_config import CRAWLER_CONFIG, LLM_CONFIG, EXTRACTION_CONFIG
 
@@ -153,11 +153,11 @@ class EnhancedCrawlerSession:
         self.session_stats["schemas_generated"] += 1
     
     def get_html_chunking_strategy(self):
-        """Get optimized HTML chunking strategy"""
-        return HtmlTagChunking(
-            tags=EXTRACTION_CONFIG["html_chunk_tags"],
-            max_chunk_tokens=EXTRACTION_CONFIG["chunk_token_threshold"],
-            overlap_rate=EXTRACTION_CONFIG["chunk_overlap_rate"]
+        """Get optimized chunking strategy"""
+        # Using OverlappingWindowChunking since HtmlTagChunking is not available
+        return OverlappingWindowChunking(
+            window_size=EXTRACTION_CONFIG["chunk_token_threshold"],
+            overlap_size=int(EXTRACTION_CONFIG["chunk_token_threshold"] * EXTRACTION_CONFIG["chunk_overlap_rate"])
         )
     
     def get_regex_chunking_strategy(self):

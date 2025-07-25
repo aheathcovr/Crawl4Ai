@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/main_hybrid.py", line 17, in <module>
+    from hybrid_extractor import HybridExtractor, ExtractionResult
+  File "/workspace/hybrid_extractor.py", line 22, in <module>
+    from crawler_manager import EnhancedCrawlerSession
+  File "/workspace/crawler_manager.py", line 14, in <module>
+    from crawl4ai.chunking_strategy import HtmlTagChunking, RegexChunking
+ImportError: cannot import name 'HtmlTagChunking' from 'crawl4ai.chunking_strategy' (/home/ubuntu/.local/lib/python3.13/site-packages/crawl4ai/chunking_strategy.py)

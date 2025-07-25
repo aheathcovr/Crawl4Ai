@@ -268,26 +268,26 @@ class HybridExtractor:
             extraction_strategy=extraction_strategy,
             chunking_strategy=self.crawler_session.get_html_chunking_strategy()
         )
-            
-            if extract_result.success and extract_result.extracted_content:
-                try:
-                    extracted_data = json.loads(extract_result.extracted_content)
-                    facilities_data = extracted_data.get(schema.get("name", "facilities"), [])
-                    
-                    if not isinstance(facilities_data, list):
-                        facilities_data = [facilities_data]
-                    
-                    # Convert to standard format
-                    facilities = []
-                    for item in facilities_data:
-                        if self._is_valid_facility_data(item):
-                            facility = self._normalize_facility_data(item, target.url)
-                            facilities.append(facility)
-                    
-                    return facilities, "llm_generated_schema"
-                    
-                except json.JSONDecodeError:
-                    pass
+        
+        if extract_result.success and extract_result.extracted_content:
+            try:
+                extracted_data = json.loads(extract_result.extracted_content)
+                facilities_data = extracted_data.get(schema.get("name", "facilities"), [])
+                
+                if not isinstance(facilities_data, list):
+                    facilities_data = [facilities_data]
+                
+                # Convert to standard format
+                facilities = []
+                for item in facilities_data:
+                    if self._is_valid_facility_data(item):
+                        facility = self._normalize_facility_data(item, target.url)
+                        facilities.append(facility)
+                
+                return facilities, "llm_generated_schema"
+                
+            except json.JSONDecodeError:
+                pass
         
         return [], "llm_schema_extraction_failed"
     
