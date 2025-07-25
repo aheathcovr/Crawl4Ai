@@ -368,7 +368,7 @@ Environment Variables:
                 llm_config = setup_local_api(model, base_url)
             
             # Test the configuration
-            if llm_config and not await test_provider(llm_config):
+            if llm_config and not asyncio.run(test_provider(llm_config)):
                 logger.error(f"❌ LLM provider {llm_config.provider.value} is not working")
                 logger.info("💡 Run with --status to check available providers")
                 sys.exit(1)
