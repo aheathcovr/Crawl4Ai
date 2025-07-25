@@ -1,22 +1,17 @@
-corporation_name,primary_url,secondary_urls,facility_types,priority,notes,estimated_facilities,last_updated
-Life Care Centers of America,https://lcca.com,,Skilled Nursing,1,Large national chain,200+,2024-01-15
-Genesis HealthCare,https://genesishcc.com,,Skilled Nursing|Rehabilitation,1,Major national provider,300+,2024-01-15
-Sunrise Senior Living,https://sunriseseniorliving.com,,Assisted Living|Memory Care,1,Premium assisted living chain,320+,2024-01-15
-Brookdale Senior Living,https://brookdaleliving.com,,Assisted Living|Memory Care|Independent Living,1,Largest senior living operator,700+,2024-01-15
-HCR ManorCare,https://hcrmanorcare.com,,Skilled Nursing|Rehabilitation,2,Post-acute care specialist,150+,2024-01-15
-Kindred Healthcare,https://kindredhealthcare.com,,Skilled Nursing|Rehabilitation|Home Health,2,Diversified healthcare services,100+,2024-01-15
-Ensign Group,https://ensigngroup.net,,Skilled Nursing|Assisted Living|Rehabilitation,2,Growing regional chain,250+,2024-01-15
-Five Star Senior Living,https://fivestarseniorliving.com,,Assisted Living|Independent Living,2,Senior housing operator,200+,2024-01-15
-Capital Senior Living,https://capitalsenior.com,,Independent Living|Assisted Living,3,Independent living focus,120+,2024-01-15
-Atria Senior Living,https://atriaseniorliving.com,,Assisted Living|Memory Care|Independent Living,2,Premium senior living,200+,2024-01-15
-Holiday Retirement,https://holidaytouch.com,,Independent Living,3,Independent living communities,300+,2024-01-15
-American Senior Communities,https://asccare.com,,Skilled Nursing|Assisted Living|Independent Living,3,Regional Midwest provider,80+,2024-01-15
-Covenant Care,https://covenantcare.com,,Skilled Nursing|Rehabilitation,3,Faith-based healthcare,60+,2024-01-15
-Trilogy Health Services,https://trilogyhs.com,,Skilled Nursing|Assisted Living|Rehabilitation,2,Integrated care model,100+,2024-01-15
-Saber Healthcare Group,https://saberhealthcare.com,,Skilled Nursing|Rehabilitation,3,Regional provider,80+,2024-01-15
-Golden Living,https://goldenliving.com,,Skilled Nursing|Rehabilitation,3,Long-term care provider,150+,2024-01-15
-Meridian Senior Living,https://meridiansenior.com,,Assisted Living|Memory Care,3,Regional assisted living,50+,2024-01-15
-Welltower,https://welltower.com,,REIT - Multiple Types,4,Real estate investment trust,1000+,2024-01-15
-Ventas,https://ventasreit.com,,REIT - Multiple Types,4,Healthcare real estate,800+,2024-01-15
-Healthcare Realty Trust,https://healthcarerealty.com,,REIT - Multiple Types,4,Healthcare real estate,200+,2024-01-15
-
+corporation_name,primary_url,secondary_urls,facility_types,priority,notes,estimated_facilities,last_updated,,,,
+Brookdale Senior Living,brookdaleliving.com,,,,,,,,,,
+Providence Group,pacs.com,,,,,,,,,,
+Veritas Management Group,veritasmg.com,,,,,,,,,,
+Oak Bend Medical Center,oakbendmedcenter.org,,,,,,,,,,
+EmpRes Operated by Evergreen,empres.com,,,,,,,,,,
+Allure Healthcare Services,allurehealthcare.com,,,,,,,,,,
+Ensign Group,ensigngroup.net,,,,,,,,,,
+Encore Senior Living,encore-seniorliving.com,,,,,,,,,,
+Caring Place Healthcare Group,caringplacehcg.com,,,,,,,,,,
+Links Healthcare,linkshealthcare.com,,,,,,,,,,
+AVALON HEALTHCARE,avalonhealthcare.com,,,,,,,,,,
+West Wharton County Hospital District,--,,,,,,,,,,
+Arcadia Care,arcadialtc.com,,,,,,,,,,
+Madison Creek Partners LLC,madisoncreekpartners.care,,,,,,,,,,
+Cascadia Healthcare,cascadiahc.com,,,,,,,,,,
+Nightingale Healthcare,nightingaleliving.com,,,,,,,,,,
