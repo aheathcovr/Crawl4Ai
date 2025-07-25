@@ -373,7 +373,8 @@ Optimized Examples for Your 4GB RAM Droplet:
             if len(urls) > 1 and i < len(urls):
                 gc.collect()
                 if args.sequential:
-                    await asyncio.sleep(2)  # Brief pause for system recovery
+                    import time
+                    time.sleep(2)  # Brief pause for system recovery
         
         print(f"\n🎉 Completed! Total facilities found: {total_facilities}")
         
