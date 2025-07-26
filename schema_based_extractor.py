@@ -269,6 +269,34 @@ class HealthcareSchemaLibrary:
             site_patterns=["*sunriseseniorliving.com*"]
         ))
         
+        # Schema 5: Life Care Centers of America (state listing pages)
+        schemas.append(ExtractionSchema(
+            name="lcca_state_listing",
+            description="Life Care Centers of America state locations listing pages",
+            css_schema={
+                "name": "facilities",
+                "baseSelector": ".facCard",
+                "fields": [
+                    {"name": "facility_name", "selector": ".facName h2", "type": "text"},
+                    {"name": "address", "selector": ".facAddress", "type": "text"},
+                    {"name": "city", "selector": "span[itemprop='addressLocality']", "type": "text"},
+                    {"name": "state", "selector": "span[itemprop='addressRegion']", "type": "text"},
+                    {"name": "zip_code", "selector": "span[itemprop='postalCode']", "type": "text"},
+                    {"name": "phone", "selector": "a[href^='tel:']", "type": "attribute", "attribute": "href"},
+                    {"name": "website", "selector": "a.btnMainCTA", "type": "attribute", "attribute": "href"},
+                    {"name": "facility_type", "selector": ".serviceType li:first-child", "type": "text"},
+                    {"name": "services", "selector": ".serviceType li", "type": "text", "multiple": True}
+                ]
+            },
+            regex_patterns={
+                "phone": r'\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}',
+                "zip_code": r'\b\d{5}(?:-\d{4})?\b',
+                "state": r'\b[A-Z]{2}\b'
+            },
+            confidence_score=0.97,
+            site_patterns=["*lcca.com/locations/*"]
+        ))
+        
         return schemas
     
     def get_best_schema(self, url: str, html_content: str) -> Optional[ExtractionSchema]:
@@ -390,6 +418,14 @@ class SchemaBasedExtractor:
                 self.extraction_stats["regex_success"] += 1
                 self.logger.info(f"Regex extraction successful: {len(facilities)} facilities found")
                 return facilities
+            
+            # Step 2.5: Heuristic – search internal location-listing links (e.g. /locations/…)
+            self.logger.info("Searching for internal location-listing pages…")
+            internal_facilities = await self._crawl_internal_location_pages(crawler, url, html_content)
+            if internal_facilities:
+                self.logger.info(f"Internal link crawling succeeded: {len(internal_facilities)} facilities found")
+                self.extraction_stats["schema_success"] += 1  # count as schema success (via sub-pages)
+                return internal_facilities
             
             # Step 3: LLM fallback (only if enabled and other methods failed)
             if self.use_llm_fallback:
@@ -600,6 +636,47 @@ class SchemaBasedExtractor:
             self.logger.error(f"LLM extraction failed: {e}")
         
         return []
+    
+    async def _crawl_internal_location_pages(self, crawler, base_url: str, html_content: str) -> List[FacilityInfo]:
+        """Heuristically follow internal links that likely contain location listings (e.g. `/locations/`, `/find-a-location/`)."""
+        import re
+        from urllib.parse import urljoin, urlparse
+        
+        candidate_links = set()
+        for match in re.findall(r'href=["\\\']([^"\'\']+)["\'\'']', html_content, re.IGNORECASE):
+            if any(token in match.lower() for token in ["/locations", "/location", "find-a-location", "facility", "affiliated-locations"]):
+                # keep same-domain relative or absolute links only
+                parsed = urlparse(match)
+                if not parsed.netloc or parsed.netloc == urlparse(base_url).netloc:
+                    candidate_links.add(urljoin(base_url, match))
+        
+        facilities: List[FacilityInfo] = []
+        visited = set()
+        
+        for link in candidate_links:
+            if link in visited:
+                continue
+            visited.add(link)
+            try:
+                sub_result = await crawler.arun(url=link)
+                if not sub_result.success:
+                    continue
+                sub_html = sub_result.html
+                sub_schema = self.schema_library.get_best_schema(link, sub_html)
+                if sub_schema:
+                    self.logger.info(f"Attempting extraction on internal page {link} using schema {sub_schema.name}")
+                    sub_facilities = await self._extract_with_schema(crawler, link, sub_schema)
+                    facilities.extend(sub_facilities)
+            except Exception as ie:
+                self.logger.debug(f"Internal crawl failed for {link}: {ie}")
+        
+        # Deduplicate by name + zip
+        unique = {}
+        for fac in facilities:
+            key = (fac.name.lower() if fac.name else "", fac.zip_code or "")
+            if key not in unique:
+                unique[key] = fac
+        return list(unique.values())
     
     def _convert_to_facility_info(self, data: Dict[str, Any], source_url: str, extraction_method: str) -> Optional[FacilityInfo]:
         """Convert extracted data to FacilityInfo object"""

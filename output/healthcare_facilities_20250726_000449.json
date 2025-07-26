@@ -1,0 +1,15 @@
+{
+  "facilities": [],
+  "validation_reports": [],
+  "scraping_results": [
+    {
+      "url": "lcca.com",
+      "success": false,
+      "facilities": [],
+      "validation_reports": [],
+      "error": "No facilities found"
+    }
+  ],
+  "total_facilities": 0,
+  "generation_date": "2025-07-26T00:04:49.000303"
+}
