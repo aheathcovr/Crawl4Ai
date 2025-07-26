@@ -1,0 +1,371 @@
+{
+  "facilities": [
+    {
+      "name": "Care &amp; Services",
+      "phone": "423-472-9585",
+      "address": "3570 Keith St",
+      "zip_code": "37312",
+      "source_url": "https://lcca.com/locations/",
+      "extraction_method": "regex"
+    },
+    {
+      "name": "Life Care Centers of America | Facebook",
+      "facility_type": "Memory Care",
+      "address": "8 talking about this. Residents are our highest",
+      "city": "",
+      "state": "UI",
+      "zip_code": "30808",
+      "phone": "1000637854",
+      "email": "publicrelations@lcca.com",
+      "website": "",
+      "administrator": "",
+      "beds": "",
+      "services_offered": [],
+      "source_url": "https://www.facebook.com/LifeCareCenters/",
+      "scraping_date": "2025-07-25T23:52:57.288694",
+      "extraction_method": "schema_based"
+    },
+    {
+      "name": "JavaScript is not available.",
+      "facility_type": "Healthcare Facility",
+      "address": "4 r-zchln",
+      "city": "",
+      "state": "UI",
+      "zip_code": "30000",
+      "phone": "921.8411268",
+      "email": "",
+      "website": "",
+      "administrator": "",
+      "beds": "",
+      "services_offered": [],
+      "source_url": "https://twitter.com/LifeCareCenters",
+      "scraping_date": "2025-07-25T23:52:59.677193",
+      "extraction_method": "schema_based"
+    },
+    {
+      "name": "Stories of Passion &amp; Care",
+      "address": "60 borderD",
+      "source_url": "https://lcca.com",
+      "extraction_method": "regex"
+    }
+  ],
+  "validation_reports": [
+    {
+      "facility_name": "Care &amp; Services",
+      "source_url": "https://lcca.com/locations/",
+      "validation_date": "2025-07-25T23:53:05.388236",
+      "overall_confidence": 0.0,
+      "field_validations": [],
+      "flags": [
+        "validation_error"
+      ],
+      "is_likely_valid": false,
+      "validation_summary": {
+        "error": "'FreeValidationSystem' object has no attribute '_create_facility_signature'"
+      }
+    },
+    {
+      "facility_name": "Life Care Centers of America | Facebook",
+      "source_url": "https://www.facebook.com/LifeCareCenters/",
+      "validation_date": "2025-07-25T23:53:05.388298",
+      "overall_confidence": 0.0,
+      "field_validations": [],
+      "flags": [
+        "validation_error"
+      ],
+      "is_likely_valid": false,
+      "validation_summary": {
+        "error": "'FreeValidationSystem' object has no attribute '_create_facility_signature'"
+      }
+    },
+    {
+      "facility_name": "JavaScript is not available.",
+      "source_url": "https://twitter.com/LifeCareCenters",
+      "validation_date": "2025-07-25T23:53:05.388326",
+      "overall_confidence": 0.0,
+      "field_validations": [],
+      "flags": [
+        "validation_error"
+      ],
+      "is_likely_valid": false,
+      "validation_summary": {
+        "error": "'FreeValidationSystem' object has no attribute '_create_facility_signature'"
+      }
+    },
+    {
+      "facility_name": "Stories of Passion &amp; Care",
+      "source_url": "https://lcca.com",
+      "validation_date": "2025-07-25T23:53:05.388347",
+      "overall_confidence": 0.0,
+      "field_validations": [],
+      "flags": [
+        "validation_error"
+      ],
+      "is_likely_valid": false,
+      "validation_summary": {
+        "error": "'FreeValidationSystem' object has no attribute '_create_facility_signature'"
+      }
+    }
+  ],
+  "scraping_results": [
+    {
+      "url": "https://lcca.com",
+      "success": true,
+      "facilities": [
+        {
+          "name": "Care &amp; Services",
+          "phone": "423-472-9585",
+          "address": "3570 Keith St",
+          "zip_code": "37312",
+          "source_url": "https://lcca.com/locations/",
+          "extraction_method": "regex"
+        },
+        {
+          "name": "Life Care Centers of America | Facebook",
+          "facility_type": "Memory Care",
+          "address": "8 talking about this. Residents are our highest",
+          "city": "",
+          "state": "UI",
+          "zip_code": "30808",
+          "phone": "1000637854",
+          "email": "publicrelations@lcca.com",
+          "website": "",
+          "administrator": "",
+          "beds": "",
+          "services_offered": [],
+          "source_url": "https://www.facebook.com/LifeCareCenters/",
+          "scraping_date": "2025-07-25T23:52:57.288694",
+          "extraction_method": "schema_based"
+        },
+        {
+          "name": "JavaScript is not available.",
+          "facility_type": "Healthcare Facility",
+          "address": "4 r-zchln",
+          "city": "",
+          "state": "UI",
+          "zip_code": "30000",
+          "phone": "921.8411268",
+          "email": "",
+          "website": "",
+          "administrator": "",
+          "beds": "",
+          "services_offered": [],
+          "source_url": "https://twitter.com/LifeCareCenters",
+          "scraping_date": "2025-07-25T23:52:59.677193",
+          "extraction_method": "schema_based"
+        },
+        {
+          "name": "Stories of Passion &amp; Care",
+          "address": "60 borderD",
+          "source_url": "https://lcca.com",
+          "extraction_method": "regex"
+        }
+      ],
+      "extraction_method": "regex_extraction",
+      "processing_time": 37.43113708496094,
+      "confidence_score": 0.47041666666666665,
+      "llm_navigation_used": false,
+      "validation_reports": [
+        {
+          "facility_name": "Care &amp; Services",
+          "source_url": "https://lcca.com/locations/",
+          "validation_date": "2025-07-25T23:53:05.388236",
+          "overall_confidence": 0.0,
+          "field_validations": [],
+          "flags": [
+            "validation_error"
+          ],
+          "is_likely_valid": false,
+          "validation_summary": {
+            "error": "'FreeValidationSystem' object has no attribute '_create_facility_signature'"
+          }
+        },
+        {
+          "facility_name": "Life Care Centers of America | Facebook",
+          "source_url": "https://www.facebook.com/LifeCareCenters/",
+          "validation_date": "2025-07-25T23:53:05.388298",
+          "overall_confidence": 0.0,
+          "field_validations": [],
+          "flags": [
+            "validation_error"
+          ],
+          "is_likely_valid": false,
+          "validation_summary": {
+            "error": "'FreeValidationSystem' object has no attribute '_create_facility_signature'"
+          }
+        },
+        {
+          "facility_name": "JavaScript is not available.",
+          "source_url": "https://twitter.com/LifeCareCenters",
+          "validation_date": "2025-07-25T23:53:05.388326",
+          "overall_confidence": 0.0,
+          "field_validations": [],
+          "flags": [
+            "validation_error"
+          ],
+          "is_likely_valid": false,
+          "validation_summary": {
+            "error": "'FreeValidationSystem' object has no attribute '_create_facility_signature'"
+          }
+        },
+        {
+          "facility_name": "Stories of Passion &amp; Care",
+          "source_url": "https://lcca.com",
+          "validation_date": "2025-07-25T23:53:05.388347",
+          "overall_confidence": 0.0,
+          "field_validations": [],
+          "flags": [
+            "validation_error"
+          ],
+          "is_likely_valid": false,
+          "validation_summary": {
+            "error": "'FreeValidationSystem' object has no attribute '_create_facility_signature'"
+          }
+        }
+      ],
+      "metadata": {
+        "site_structure": {
+          "main_url": "https://lcca.com",
+          "navigation_targets": [
+            {
+              "url": "https://lcca.com/locations/",
+              "page_type": "facility_listing",
+              "confidence": 0.6,
+              "description": "Potential facility page: /locations/",
+              "expected_facility_count": null,
+              "css_selectors": null,
+              "extraction_hints": null
+            },
+            {
+              "url": "https://lcca.com/resources/selecting-care-center",
+              "page_type": "facility_listing",
+              "confidence": 0.6,
+              "description": "Potential facility page: /resources/selecting-care-center",
+              "expected_facility_count": null,
+              "css_selectors": null,
+              "extraction_hints": null
+            },
+            {
+              "url": "https://www.facebook.com/LifeCareCenters/",
+              "page_type": "facility_listing",
+              "confidence": 0.6,
+              "description": "Potential facility page: https://www.facebook.com/LifeCareCenters/",
+              "expected_facility_count": null,
+              "css_selectors": null,
+              "extraction_hints": null
+            },
+            {
+              "url": "https://twitter.com/LifeCareCenters",
+              "page_type": "facility_listing",
+              "confidence": 0.6,
+              "description": "Potential facility page: https://twitter.com/LifeCareCenters",
+              "expected_facility_count": null,
+              "css_selectors": null,
+              "extraction_hints": null
+            },
+            {
+              "url": "https://lcca.com/locations/state",
+              "page_type": "facility_listing",
+              "confidence": 0.6,
+              "description": "Potential facility page: /locations/state",
+              "expected_facility_count": null,
+              "css_selectors": null,
+              "extraction_hints": null
+            },
+            {
+              "url": "https://lcca.com/blog/Facility-Events-July",
+              "page_type": "facility_listing",
+              "confidence": 0.6,
+              "description": "Potential facility page: blog/Facility-Events-July",
+              "expected_facility_count": null,
+              "css_selectors": null,
+              "extraction_hints": null
+            },
+            {
+              "url": "https://www.linkedin.com/company/life-care-centers-of-america/",
+              "page_type": "facility_listing",
+              "confidence": 0.6,
+              "description": "Potential facility page: https://www.linkedin.com/company/life-care-centers-of-america/",
+              "expected_facility_count": null,
+              "css_selectors": null,
+              "extraction_hints": null
+            }
+          ],
+          "site_type": "corporate_chain",
+          "total_expected_facilities": 70,
+          "navigation_strategy": "pattern_based_fallback",
+          "analysis_confidence": 0.4
+        },
+        "extraction_targets": [
+          {
+            "url": "https://lcca.com/locations/",
+            "page_type": "facility_listing",
+            "confidence": 0.6,
+            "description": "Potential facility page: /locations/",
+            "expected_facility_count": null,
+            "css_selectors": null,
+            "extraction_hints": null
+          },
+          {
+            "url": "https://lcca.com/resources/selecting-care-center",
+            "page_type": "facility_listing",
+            "confidence": 0.6,
+            "description": "Potential facility page: /resources/selecting-care-center",
+            "expected_facility_count": null,
+            "css_selectors": null,
+            "extraction_hints": null
+          },
+          {
+            "url": "https://www.facebook.com/LifeCareCenters/",
+            "page_type": "facility_listing",
+            "confidence": 0.6,
+            "description": "Potential facility page: https://www.facebook.com/LifeCareCenters/",
+            "expected_facility_count": null,
+            "css_selectors": null,
+            "extraction_hints": null
+          },
+          {
+            "url": "https://twitter.com/LifeCareCenters",
+            "page_type": "facility_listing",
+            "confidence": 0.6,
+            "description": "Potential facility page: https://twitter.com/LifeCareCenters",
+            "expected_facility_count": null,
+            "css_selectors": null,
+            "extraction_hints": null
+          },
+          {
+            "url": "https://lcca.com/locations/state",
+            "page_type": "facility_listing",
+            "confidence": 0.6,
+            "description": "Potential facility page: /locations/state",
+            "expected_facility_count": null,
+            "css_selectors": null,
+            "extraction_hints": null
+          },
+          {
+            "url": "https://lcca.com",
+            "page_type": "main_page",
+            "confidence": 0.7,
+            "description": "Main page fallback",
+            "expected_facility_count": null,
+            "css_selectors": null,
+            "extraction_hints": null
+          }
+        ],
+        "extraction_methods_used": [
+          "regex_extraction",
+          "regex_extraction",
+          "predefined_schema",
+          "predefined_schema",
+          "regex_extraction",
+          "regex_extraction"
+        ],
+        "model_preference": "fast"
+      },
+      "timestamp": "2025-07-25T23:53:05.388562"
+    }
+  ],
+  "total_facilities": 4,
+  "generation_date": "2025-07-25T23:53:05.388715",
+  "extraction_type": "hybrid_llm_algorithm"
+}

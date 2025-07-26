@@ -1,0 +1,62 @@
+2025-07-25 23:48:59,923 - __main__ - INFO - 🚀 Starting hybrid healthcare facility scraping
+2025-07-25 23:48:59,923 - __main__ - INFO - 🧠 Model preference: fast
+2025-07-25 23:48:59,923 - __main__ - INFO - ✅ Validation: enabled
+2025-07-25 23:48:59,923 - __main__ - INFO - ⏱️  Request delay: 3.0s
+2025-07-25 23:48:59,923 - __main__ - INFO - 📦 Batch size: 1
+2025-07-25 23:48:59,928 - __main__ - INFO - 🌐 Processing 1 URLs
+2025-07-25 23:48:59,928 - __main__ - INFO - 📦 Processing batch 1/1
+2025-07-25 23:48:59,928 - __main__ - INFO - 🎯 Hybrid scraping: https://lcca.com
+2025-07-25 23:48:59,928 - hybrid_extractor - INFO - 🚀 Starting hybrid extraction: https://lcca.com
+2025-07-25 23:48:59,928 - hybrid_extractor - INFO - 🧠 Phase 1: LLM site analysis
+2025-07-25 23:48:59,928 - hybrid_llm_navigator - INFO - 🧠 Analyzing site structure: https://lcca.com
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com                                                   
+| ✓ | ⏱: 0.73s 
+[SCRAPE].. ◆ https://lcca.com                                                   
+| ✓ | ⏱: 0.02s 
+[COMPLETE] ● https://lcca.com                                                   
+| ✓ | ⏱: 0.74s 
+2025-07-25 23:49:01,167 - hybrid_extractor - ERROR - ❌ Hybrid extraction failed: '\n    "site_type"'
+2025-07-25 23:49:01,167 - hybrid_extractor - INFO - 🔄 Using fallback extraction
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com                                                   
+| ✓ | ⏱: 0.69s 
+[SCRAPE].. ◆ https://lcca.com                                                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com                                                   
+| ✓ | ⏱: 0.71s 
+2025-07-25 23:49:02,195 - schema_based_extractor - WARNING - No suitable schema found for this page
+2025-07-25 23:49:02,195 - schema_based_extractor - INFO - Trying regex-based extraction
+2025-07-25 23:49:02,198 - schema_based_extractor - INFO - Falling back to LLM extraction
+[FETCH]... ↓ https://lcca.com                                                   
+| ✓ | ⏱: 0.43s 
+[SCRAPE].. ◆ https://lcca.com                                                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com                                                   
+| ✓ | ⏱: 0.44s 
+2025-07-25 23:49:02,649 - schema_based_extractor - WARNING - All extraction methods failed for https://lcca.com
+
+🎉 Hybrid scraping completed!
+📊 Session Statistics:
+   URLs processed: 1
+   Successful extractions: 0
+   Failed extractions: 1
+   Success rate: 0.0%
+   Total facilities found: 0
+   Average facilities per URL: 0.0
+   Total processing time: 0.0s
+   Average time per URL: 0.0s
+   Session duration: 2.8s
+
+🔧 Extraction Method Performance:
+   LLM navigation success rate: 0.0%
+   Schema extraction success rate: 0.0%
+   Regex extraction success rate: 0.0%
+   LLM fallback rate: 0.0%
+
+📁 Output files:
+   JSON: lcca_final_test/hybrid_healthcare_facilities_20250725_234902.json
+
+🤖 Model Configuration:
+   Preference: fast
+   API: OpenRouter

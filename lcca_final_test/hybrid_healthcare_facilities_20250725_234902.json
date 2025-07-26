@@ -1,0 +1,23 @@
+{
+  "facilities": [],
+  "validation_reports": [],
+  "scraping_results": [
+    {
+      "url": "https://lcca.com",
+      "success": true,
+      "facilities": [],
+      "extraction_method": "fallback_schema",
+      "processing_time": 2.7999370098114014,
+      "confidence_score": 0.4,
+      "llm_navigation_used": false,
+      "validation_reports": [],
+      "metadata": {
+        "fallback_used": true
+      },
+      "timestamp": "2025-07-25T23:49:02.728395"
+    }
+  ],
+  "total_facilities": 0,
+  "generation_date": "2025-07-25T23:49:02.728541",
+  "extraction_type": "hybrid_llm_algorithm"
+}

@@ -1,0 +1,327 @@
+{
+  "facilities": [
+    {
+      "name": "Company Info",
+      "facility_type": "Healthcare Facility",
+      "address": "2714 av-special-heading-h1 cust",
+      "city": "",
+      "state": "",
+      "zip_code": "",
+      "phone": "",
+      "email": "",
+      "website": "",
+      "administrator": "",
+      "beds": "",
+      "services_offered": [],
+      "source_url": "https://ensigngroup.net/company-info/#locations",
+      "scraping_date": "2025-07-26T00:09:11.979795",
+      "extraction_method": "schema_based"
+    },
+    {
+      "name": "Careers",
+      "facility_type": "Healthcare Facility",
+      "address": "50 av-special-heading-h2 cust",
+      "city": "",
+      "state": "",
+      "zip_code": "",
+      "phone": "8742716636",
+      "email": "",
+      "website": "",
+      "administrator": "",
+      "beds": "",
+      "services_offered": [],
+      "source_url": "https://ensigngroup.net",
+      "scraping_date": "2025-07-26T00:09:14.434330",
+      "extraction_method": "schema_based"
+    },
+    {
+      "name": "Careers",
+      "facility_type": "Healthcare Facility",
+      "address": "9 av-special-heading-h2 cust",
+      "city": "",
+      "state": "",
+      "zip_code": "",
+      "phone": "",
+      "email": "",
+      "website": "",
+      "administrator": "",
+      "beds": "",
+      "services_offered": [],
+      "source_url": "https://ensigngroup.net",
+      "scraping_date": "2025-07-26T00:09:14.434344",
+      "extraction_method": "schema_based"
+    },
+    {
+      "name": "The Mission",
+      "facility_type": "Healthcare Facility",
+      "address": "436344 av-special-heading-h2 cust",
+      "city": "",
+      "state": "",
+      "zip_code": "",
+      "phone": "",
+      "email": "",
+      "website": "",
+      "administrator": "",
+      "beds": "",
+      "services_offered": [],
+      "source_url": "https://ensigngroup.net",
+      "scraping_date": "2025-07-26T00:09:14.434347",
+      "extraction_method": "schema_based"
+    }
+  ],
+  "validation_reports": [
+    {
+      "facility_name": "Company Info",
+      "source_url": "https://ensigngroup.net/company-info/#locations",
+      "validation_date": "2025-07-26T00:09:14.434709",
+      "overall_confidence": 0.0,
+      "field_validations": [],
+      "flags": [
+        "validation_error"
+      ],
+      "is_likely_valid": false,
+      "validation_summary": {
+        "error": "'FreeValidationSystem' object has no attribute '_create_facility_signature'"
+      }
+    },
+    {
+      "facility_name": "Careers",
+      "source_url": "https://ensigngroup.net",
+      "validation_date": "2025-07-26T00:09:14.434779",
+      "overall_confidence": 0.0,
+      "field_validations": [],
+      "flags": [
+        "validation_error"
+      ],
+      "is_likely_valid": false,
+      "validation_summary": {
+        "error": "'FreeValidationSystem' object has no attribute '_create_facility_signature'"
+      }
+    },
+    {
+      "facility_name": "Careers",
+      "source_url": "https://ensigngroup.net",
+      "validation_date": "2025-07-26T00:09:14.434805",
+      "overall_confidence": 0.0,
+      "field_validations": [],
+      "flags": [
+        "validation_error"
+      ],
+      "is_likely_valid": false,
+      "validation_summary": {
+        "error": "'FreeValidationSystem' object has no attribute '_create_facility_signature'"
+      }
+    },
+    {
+      "facility_name": "The Mission",
+      "source_url": "https://ensigngroup.net",
+      "validation_date": "2025-07-26T00:09:14.434824",
+      "overall_confidence": 0.0,
+      "field_validations": [],
+      "flags": [
+        "validation_error"
+      ],
+      "is_likely_valid": false,
+      "validation_summary": {
+        "error": "'FreeValidationSystem' object has no attribute '_create_facility_signature'"
+      }
+    }
+  ],
+  "scraping_results": [
+    {
+      "url": "https://ensigngroup.net",
+      "success": true,
+      "facilities": [
+        {
+          "name": "Company Info",
+          "facility_type": "Healthcare Facility",
+          "address": "2714 av-special-heading-h1 cust",
+          "city": "",
+          "state": "",
+          "zip_code": "",
+          "phone": "",
+          "email": "",
+          "website": "",
+          "administrator": "",
+          "beds": "",
+          "services_offered": [],
+          "source_url": "https://ensigngroup.net/company-info/#locations",
+          "scraping_date": "2025-07-26T00:09:11.979795",
+          "extraction_method": "schema_based"
+        },
+        {
+          "name": "Careers",
+          "facility_type": "Healthcare Facility",
+          "address": "50 av-special-heading-h2 cust",
+          "city": "",
+          "state": "",
+          "zip_code": "",
+          "phone": "8742716636",
+          "email": "",
+          "website": "",
+          "administrator": "",
+          "beds": "",
+          "services_offered": [],
+          "source_url": "https://ensigngroup.net",
+          "scraping_date": "2025-07-26T00:09:14.434330",
+          "extraction_method": "schema_based"
+        },
+        {
+          "name": "Careers",
+          "facility_type": "Healthcare Facility",
+          "address": "9 av-special-heading-h2 cust",
+          "city": "",
+          "state": "",
+          "zip_code": "",
+          "phone": "",
+          "email": "",
+          "website": "",
+          "administrator": "",
+          "beds": "",
+          "services_offered": [],
+          "source_url": "https://ensigngroup.net",
+          "scraping_date": "2025-07-26T00:09:14.434344",
+          "extraction_method": "schema_based"
+        },
+        {
+          "name": "The Mission",
+          "facility_type": "Healthcare Facility",
+          "address": "436344 av-special-heading-h2 cust",
+          "city": "",
+          "state": "",
+          "zip_code": "",
+          "phone": "",
+          "email": "",
+          "website": "",
+          "administrator": "",
+          "beds": "",
+          "services_offered": [],
+          "source_url": "https://ensigngroup.net",
+          "scraping_date": "2025-07-26T00:09:14.434347",
+          "extraction_method": "schema_based"
+        }
+      ],
+      "extraction_method": "predefined_schema",
+      "processing_time": 23.257052659988403,
+      "confidence_score": 0.56875,
+      "llm_navigation_used": true,
+      "validation_reports": [
+        {
+          "facility_name": "Company Info",
+          "source_url": "https://ensigngroup.net/company-info/#locations",
+          "validation_date": "2025-07-26T00:09:14.434709",
+          "overall_confidence": 0.0,
+          "field_validations": [],
+          "flags": [
+            "validation_error"
+          ],
+          "is_likely_valid": false,
+          "validation_summary": {
+            "error": "'FreeValidationSystem' object has no attribute '_create_facility_signature'"
+          }
+        },
+        {
+          "facility_name": "Careers",
+          "source_url": "https://ensigngroup.net",
+          "validation_date": "2025-07-26T00:09:14.434779",
+          "overall_confidence": 0.0,
+          "field_validations": [],
+          "flags": [
+            "validation_error"
+          ],
+          "is_likely_valid": false,
+          "validation_summary": {
+            "error": "'FreeValidationSystem' object has no attribute '_create_facility_signature'"
+          }
+        },
+        {
+          "facility_name": "Careers",
+          "source_url": "https://ensigngroup.net",
+          "validation_date": "2025-07-26T00:09:14.434805",
+          "overall_confidence": 0.0,
+          "field_validations": [],
+          "flags": [
+            "validation_error"
+          ],
+          "is_likely_valid": false,
+          "validation_summary": {
+            "error": "'FreeValidationSystem' object has no attribute '_create_facility_signature'"
+          }
+        },
+        {
+          "facility_name": "The Mission",
+          "source_url": "https://ensigngroup.net",
+          "validation_date": "2025-07-26T00:09:14.434824",
+          "overall_confidence": 0.0,
+          "field_validations": [],
+          "flags": [
+            "validation_error"
+          ],
+          "is_likely_valid": false,
+          "validation_summary": {
+            "error": "'FreeValidationSystem' object has no attribute '_create_facility_signature'"
+          }
+        }
+      ],
+      "metadata": {
+        "site_structure": {
+          "main_url": "https://ensigngroup.net",
+          "navigation_targets": [
+            {
+              "url": "https://ensigngroup.net/company-info/#locations",
+              "page_type": "facility_listing",
+              "confidence": 0.8,
+              "description": "Page expected to contain a list or directory of Ensign Group's affiliated locations.",
+              "expected_facility_count": null,
+              "css_selectors": [
+                ".facility-list > li",
+                ".location-card",
+                ".address-block",
+                "a[href*='/locations/']"
+              ],
+              "extraction_hints": null
+            }
+          ],
+          "site_type": "corporate_chain",
+          "total_expected_facilities": 100,
+          "navigation_strategy": "Navigate to the 'Company Info' section and look for a subsection labeled 'Ensign-Affiliated Locations'. This should lead to a page or a dropdown that lists all the facilities with possible links to individual facility pages.",
+          "analysis_confidence": 0.9
+        },
+        "extraction_targets": [
+          {
+            "url": "https://ensigngroup.net/company-info/#locations",
+            "page_type": "facility_listing",
+            "confidence": 0.8,
+            "description": "Page expected to contain a list or directory of Ensign Group's affiliated locations.",
+            "expected_facility_count": null,
+            "css_selectors": [
+              ".facility-list > li",
+              ".location-card",
+              ".address-block",
+              "a[href*='/locations/']"
+            ],
+            "extraction_hints": null
+          },
+          {
+            "url": "https://ensigngroup.net",
+            "page_type": "main_page",
+            "confidence": 0.7,
+            "description": "Main page fallback",
+            "expected_facility_count": null,
+            "css_selectors": null,
+            "extraction_hints": null
+          }
+        ],
+        "extraction_methods_used": [
+          "predefined_schema",
+          "predefined_schema"
+        ],
+        "model_preference": "fast"
+      },
+      "timestamp": "2025-07-26T00:09:14.435037"
+    }
+  ],
+  "total_facilities": 4,
+  "generation_date": "2025-07-26T00:09:14.435223",
+  "extraction_type": "hybrid_llm_algorithm"
+}

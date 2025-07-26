@@ -1,0 +1,5 @@
+name,phone,address,zip_code,source_url,extraction_method,facility_type,city,state,email,website,administrator,beds,services_offered,scraping_date
+Care &amp; Services,423-472-9585,3570 Keith St,37312,https://lcca.com/locations/,regex,,,,,,,,,
+Life Care Centers of America | Facebook,1000637854,8 talking about this. Residents are our highest,30808,https://www.facebook.com/LifeCareCenters/,schema_based,Memory Care,,UI,publicrelations@lcca.com,,,,,2025-07-25T23:52:57.288694
+JavaScript is not available.,921.8411268,4 r-zchln,30000,https://twitter.com/LifeCareCenters,schema_based,Healthcare Facility,,UI,,,,,,2025-07-25T23:52:59.677193
+Stories of Passion &amp; Care,,60 borderD,,https://lcca.com,regex,,,,,,,,,

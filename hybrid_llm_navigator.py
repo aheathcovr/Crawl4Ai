@@ -200,7 +200,25 @@ class HybridLLMNavigator:
     
     async def analyze_site_structure(self, url: str) -> SiteStructure:
         """Analyze site structure using LLM intelligence"""
-        
+        # --- NEW: prefer built-in Crawl4AI SiteAnalyzer ---
+        try:
+            from crawl4ai.site_analyzer import SiteAnalyzer
+            analyzer = SiteAnalyzer()
+            self.logger.info("🧠 Using Crawl4AI SiteAnalyzer for structure analysis")
+            analysis_json = await analyzer.analyze(url)
+            # Convert JSON to SiteStructure dataclass
+            nav_targets = [NavigationTarget(**t) for t in analysis_json.get("navigation_targets", [])]
+            return SiteStructure(
+                main_url=url,
+                navigation_targets=nav_targets,
+                site_type=analysis_json.get("site_type", "unknown"),
+                total_expected_facilities=analysis_json.get("expected_facility_count", 0),
+                navigation_strategy=analysis_json.get("navigation_strategy", "site_analyzer"),
+                analysis_confidence=analysis_json.get("confidence", 0.8),
+            )
+        except Exception as e:
+            self.logger.warning(f"SiteAnalyzer not available or failed ({e}); falling back to custom logic")
+
         self.logger.info(f"🧠 Analyzing site structure: {url}")
         
         async with AsyncWebCrawler(headless=True, verbose=False) as crawler:
@@ -233,7 +251,19 @@ class HybridLLMNavigator:
                 raise Exception(f"LLM analysis failed: {llm_response['error']}")
             
             try:
-                analysis_data = json.loads(llm_response["content"])
+                # Clean and extract JSON from LLM response
+                content = llm_response["content"].strip()
+                
+                # Try to extract JSON if it's embedded in markdown code blocks
+                json_start = content.find('{')
+                json_end = content.rfind('}') + 1
+                
+                if json_start >= 0 and json_end > json_start:
+                    json_content = content[json_start:json_end]
+                    analysis_data = json.loads(json_content)
+                else:
+                    # Fallback to direct parsing
+                    analysis_data = json.loads(content)
                 
                 # Convert to NavigationTarget objects
                 navigation_targets = []

@@ -1,0 +1,143 @@
+{
+  "facilities": [],
+  "validation_reports": [],
+  "scraping_results": [
+    {
+      "url": "https://lcca.com",
+      "success": true,
+      "facilities": [],
+      "extraction_method": "no_extraction",
+      "processing_time": 27.88007092475891,
+      "confidence_score": 0.4,
+      "llm_navigation_used": false,
+      "validation_reports": [],
+      "metadata": {
+        "site_structure": {
+          "main_url": "https://lcca.com",
+          "navigation_targets": [
+            {
+              "url": "https://lcca.com/locations/",
+              "page_type": "facility_listing",
+              "confidence": 0.6,
+              "description": "Potential facility page: /locations/",
+              "expected_facility_count": null,
+              "css_selectors": null,
+              "extraction_hints": null
+            },
+            {
+              "url": "https://lcca.com/resources/selecting-care-center",
+              "page_type": "facility_listing",
+              "confidence": 0.6,
+              "description": "Potential facility page: /resources/selecting-care-center",
+              "expected_facility_count": null,
+              "css_selectors": null,
+              "extraction_hints": null
+            },
+            {
+              "url": "https://www.facebook.com/LifeCareCenters/",
+              "page_type": "facility_listing",
+              "confidence": 0.6,
+              "description": "Potential facility page: https://www.facebook.com/LifeCareCenters/",
+              "expected_facility_count": null,
+              "css_selectors": null,
+              "extraction_hints": null
+            },
+            {
+              "url": "https://twitter.com/LifeCareCenters",
+              "page_type": "facility_listing",
+              "confidence": 0.6,
+              "description": "Potential facility page: https://twitter.com/LifeCareCenters",
+              "expected_facility_count": null,
+              "css_selectors": null,
+              "extraction_hints": null
+            },
+            {
+              "url": "https://lcca.com/locations/state",
+              "page_type": "facility_listing",
+              "confidence": 0.6,
+              "description": "Potential facility page: /locations/state",
+              "expected_facility_count": null,
+              "css_selectors": null,
+              "extraction_hints": null
+            },
+            {
+              "url": "https://lcca.com/blog/Facility-Events-July",
+              "page_type": "facility_listing",
+              "confidence": 0.6,
+              "description": "Potential facility page: blog/Facility-Events-July",
+              "expected_facility_count": null,
+              "css_selectors": null,
+              "extraction_hints": null
+            },
+            {
+              "url": "https://www.linkedin.com/company/life-care-centers-of-america/",
+              "page_type": "facility_listing",
+              "confidence": 0.6,
+              "description": "Potential facility page: https://www.linkedin.com/company/life-care-centers-of-america/",
+              "expected_facility_count": null,
+              "css_selectors": null,
+              "extraction_hints": null
+            }
+          ],
+          "site_type": "corporate_chain",
+          "total_expected_facilities": 70,
+          "navigation_strategy": "pattern_based_fallback",
+          "analysis_confidence": 0.4
+        },
+        "extraction_targets": [
+          {
+            "url": "https://lcca.com/locations/",
+            "page_type": "facility_listing",
+            "confidence": 0.6,
+            "description": "Potential facility page: /locations/",
+            "expected_facility_count": null,
+            "css_selectors": null,
+            "extraction_hints": null
+          },
+          {
+            "url": "https://lcca.com/resources/selecting-care-center",
+            "page_type": "facility_listing",
+            "confidence": 0.6,
+            "description": "Potential facility page: /resources/selecting-care-center",
+            "expected_facility_count": null,
+            "css_selectors": null,
+            "extraction_hints": null
+          },
+          {
+            "url": "https://lcca.com/locations/state",
+            "page_type": "facility_listing",
+            "confidence": 0.6,
+            "description": "Potential facility page: /locations/state",
+            "expected_facility_count": null,
+            "css_selectors": null,
+            "extraction_hints": null
+          },
+          {
+            "url": "https://lcca.com/blog/Facility-Events-July",
+            "page_type": "facility_listing",
+            "confidence": 0.6,
+            "description": "Potential facility page: blog/Facility-Events-July",
+            "expected_facility_count": null,
+            "css_selectors": null,
+            "extraction_hints": null
+          },
+          {
+            "url": "https://lcca.com",
+            "page_type": "main_page",
+            "confidence": 0.7,
+            "description": "Main page fallback",
+            "expected_facility_count": null,
+            "css_selectors": null,
+            "extraction_hints": null
+          }
+        ],
+        "extraction_methods_used": [],
+        "model_preference": "fast"
+      },
+      "timestamp": "2025-07-26T00:08:38.381256"
+    }
+  ],
+  "total_facilities": 0,
+  "generation_date": "2025-07-26T00:08:38.381444",
+  "extraction_type": "hybrid_llm_algorithm"
+}

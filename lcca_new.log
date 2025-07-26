@@ -1,0 +1,206 @@
+2025-07-26 00:08:10,495 - __main__ - INFO - 🚀 Starting hybrid healthcare facility scraping
+2025-07-26 00:08:10,495 - __main__ - INFO - 🧠 Model preference: fast
+2025-07-26 00:08:10,495 - __main__ - INFO - ✅ Validation: enabled
+2025-07-26 00:08:10,495 - __main__ - INFO - ⏱️  Request delay: 3.0s
+2025-07-26 00:08:10,495 - __main__ - INFO - 📦 Batch size: 1
+2025-07-26 00:08:10,500 - __main__ - INFO - 🌐 Processing 1 URLs
+2025-07-26 00:08:10,500 - __main__ - INFO - 📦 Processing batch 1/1
+2025-07-26 00:08:10,501 - __main__ - INFO - 🎯 Hybrid scraping: https://lcca.com
+2025-07-26 00:08:10,501 - hybrid_extractor - INFO - 🚀 Starting hybrid extraction: https://lcca.com
+2025-07-26 00:08:10,501 - hybrid_extractor - INFO - 🧠 Phase 1: LLM site analysis
+2025-07-26 00:08:10,501 - hybrid_llm_navigator - WARNING - SiteAnalyzer not available or failed (No module named 'crawl4ai.site_analyzer'); falling back to custom logic
+2025-07-26 00:08:10,501 - hybrid_llm_navigator - INFO - 🧠 Analyzing site structure: https://lcca.com
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com                                                   
+| ✓ | ⏱: 0.72s 
+[SCRAPE].. ◆ https://lcca.com                                                   
+| ✓ | ⏱: 0.02s 
+[COMPLETE] ● https://lcca.com                                                   
+| ✓ | ⏱: 0.74s 
+2025-07-26 00:08:21,685 - hybrid_llm_navigator - ERROR - Failed to parse LLM response: Expecting property name enclosed in double quotes: line 28 column 37 (char 1016)
+2025-07-26 00:08:21,685 - hybrid_llm_navigator - INFO - 🔄 Using fallback pattern-based analysis
+2025-07-26 00:08:21,745 - hybrid_extractor - INFO - 📋 Selected 5 extraction targets
+2025-07-26 00:08:21,745 - hybrid_extractor - INFO - 🔍 Extracting from: https://lcca.com/locations/
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.79s 
+[SCRAPE].. ◆ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.02s 
+[COMPLETE] ● https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.82s 
+2025-07-26 00:08:22,899 - schema_based_extractor - INFO - Selected schema 'standard_facility_listing' based on URL pattern
+2025-07-26 00:08:22,899 - schema_based_extractor - INFO - Using schema-based extraction: standard_facility_listing
+[FETCH]... ↓ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.62s 
+[SCRAPE].. ◆ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.05s 
+[COMPLETE] ● https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.68s 
+2025-07-26 00:08:23,586 - schema_based_extractor - INFO - Trying regex-based extraction
+2025-07-26 00:08:23,588 - schema_based_extractor - INFO - Falling back to LLM extraction
+[FETCH]... ↓ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.62s 
+[SCRAPE].. ◆ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.05s 
+[COMPLETE] ● https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.68s 
+2025-07-26 00:08:24,274 - schema_based_extractor - WARNING - All extraction methods failed for https://lcca.com/locations/
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.84s 
+[SCRAPE].. ◆ https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.02s 
+[COMPLETE] ● https://lcca.com/locations/                                        
+| ✓ | ⏱: 0.87s 
+2025-07-26 00:08:25,717 - schema_based_extractor - ERROR - LLM extraction failed: 'NoneType' object has no attribute 'arun'
+2025-07-26 00:08:25,717 - hybrid_extractor - INFO - 🔍 Extracting from: https://lcca.com/resources/selecting-care-center
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com/resources/selecting-care-center                   
+| ✓ | ⏱: 0.85s 
+[SCRAPE].. ◆ https://lcca.com/resources/selecting-care-center                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com/resources/selecting-care-center                   
+| ✓ | ⏱: 0.87s 
+2025-07-26 00:08:26,941 - schema_based_extractor - INFO - Selected schema 'standard_facility_listing' based on URL pattern
+2025-07-26 00:08:26,941 - schema_based_extractor - INFO - Using schema-based extraction: standard_facility_listing
+[FETCH]... ↓ https://lcca.com/resources/selecting-care-center                   
+| ✓ | ⏱: 0.37s 
+[SCRAPE].. ◆ https://lcca.com/resources/selecting-care-center                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com/resources/selecting-care-center                   
+| ✓ | ⏱: 0.38s 
+2025-07-26 00:08:27,333 - schema_based_extractor - INFO - Trying regex-based extraction
+2025-07-26 00:08:27,333 - schema_based_extractor - INFO - Falling back to LLM extraction
+[FETCH]... ↓ https://lcca.com/resources/selecting-care-center                   
+| ✓ | ⏱: 0.38s 
+[SCRAPE].. ◆ https://lcca.com/resources/selecting-care-center                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com/resources/selecting-care-center                   
+| ✓ | ⏱: 0.39s 
+2025-07-26 00:08:27,731 - schema_based_extractor - WARNING - All extraction methods failed for https://lcca.com/resources/selecting-care-center
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com/resources/selecting-care-center                   
+| ✓ | ⏱: 0.80s 
+[SCRAPE].. ◆ https://lcca.com/resources/selecting-care-center                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com/resources/selecting-care-center                   
+| ✓ | ⏱: 0.82s 
+2025-07-26 00:08:29,037 - schema_based_extractor - ERROR - LLM extraction failed: 'NoneType' object has no attribute 'arun'
+2025-07-26 00:08:29,037 - hybrid_extractor - INFO - 🔍 Extracting from: https://lcca.com/locations/state
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.73s 
+[SCRAPE].. ◆ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.75s 
+2025-07-26 00:08:30,142 - schema_based_extractor - INFO - Selected schema 'standard_facility_listing' based on URL pattern
+2025-07-26 00:08:30,142 - schema_based_extractor - INFO - Using schema-based extraction: standard_facility_listing
+[FETCH]... ↓ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.37s 
+[SCRAPE].. ◆ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.39s 
+2025-07-26 00:08:30,538 - schema_based_extractor - INFO - Trying regex-based extraction
+2025-07-26 00:08:30,539 - schema_based_extractor - INFO - Falling back to LLM extraction
+[FETCH]... ↓ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.37s 
+[SCRAPE].. ◆ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.39s 
+2025-07-26 00:08:30,933 - schema_based_extractor - WARNING - All extraction methods failed for https://lcca.com/locations/state
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.78s 
+[SCRAPE].. ◆ https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com/locations/state                                   
+| ✓ | ⏱: 0.80s 
+2025-07-26 00:08:32,217 - schema_based_extractor - ERROR - LLM extraction failed: 'NoneType' object has no attribute 'arun'
+2025-07-26 00:08:32,217 - hybrid_extractor - INFO - 🔍 Extracting from: https://lcca.com/blog/Facility-Events-July
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com/blog/Facility-Events-July                         
+| ✓ | ⏱: 0.87s 
+[SCRAPE].. ◆ https://lcca.com/blog/Facility-Events-July                         
+| ✓ | ⏱: 0.02s 
+[COMPLETE] ● https://lcca.com/blog/Facility-Events-July                         
+| ✓ | ⏱: 0.89s 
+2025-07-26 00:08:33,435 - schema_based_extractor - INFO - Selected schema 'standard_facility_listing' based on URL pattern
+2025-07-26 00:08:33,435 - schema_based_extractor - INFO - Using schema-based extraction: standard_facility_listing
+[FETCH]... ↓ https://lcca.com/blog/Facility-Events-July                         
+| ✓ | ⏱: 0.43s 
+[SCRAPE].. ◆ https://lcca.com/blog/Facility-Events-July                         
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com/blog/Facility-Events-July                         
+| ✓ | ⏱: 0.44s 
+2025-07-26 00:08:33,885 - schema_based_extractor - INFO - Trying regex-based extraction
+2025-07-26 00:08:33,895 - schema_based_extractor - INFO - Falling back to LLM extraction
+[FETCH]... ↓ https://lcca.com/blog/Facility-Events-July                         
+| ✓ | ⏱: 0.43s 
+[SCRAPE].. ◆ https://lcca.com/blog/Facility-Events-July                         
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com/blog/Facility-Events-July                         
+| ✓ | ⏱: 0.45s 
+2025-07-26 00:08:34,354 - schema_based_extractor - WARNING - All extraction methods failed for https://lcca.com/blog/Facility-Events-July
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com/blog/Facility-Events-July                         
+| ✓ | ⏱: 0.80s 
+[SCRAPE].. ◆ https://lcca.com/blog/Facility-Events-July                         
+| ✓ | ⏱: 0.02s 
+[COMPLETE] ● https://lcca.com/blog/Facility-Events-July                         
+| ✓ | ⏱: 0.81s 
+2025-07-26 00:08:35,661 - schema_based_extractor - ERROR - LLM extraction failed: 'NoneType' object has no attribute 'arun'
+2025-07-26 00:08:35,661 - hybrid_extractor - INFO - 🔍 Extracting from: https://lcca.com
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com                                                   
+| ✓ | ⏱: 0.71s 
+[SCRAPE].. ◆ https://lcca.com                                                   
+| ✓ | ⏱: 0.02s 
+[COMPLETE] ● https://lcca.com                                                   
+| ✓ | ⏱: 0.73s 
+2025-07-26 00:08:36,741 - schema_based_extractor - WARNING - No suitable schema found for this page
+2025-07-26 00:08:36,742 - schema_based_extractor - INFO - Trying regex-based extraction
+2025-07-26 00:08:36,743 - schema_based_extractor - INFO - Falling back to LLM extraction
+[FETCH]... ↓ https://lcca.com                                                   
+| ✓ | ⏱: 0.41s 
+[SCRAPE].. ◆ https://lcca.com                                                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com                                                   
+| ✓ | ⏱: 0.42s 
+2025-07-26 00:08:37,173 - schema_based_extractor - WARNING - All extraction methods failed for https://lcca.com
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://lcca.com                                                   
+| ✓ | ⏱: 0.70s 
+[SCRAPE].. ◆ https://lcca.com                                                   
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://lcca.com                                                   
+| ✓ | ⏱: 0.72s 
+2025-07-26 00:08:38,381 - schema_based_extractor - ERROR - LLM extraction failed: 'NoneType' object has no attribute 'arun'
+2025-07-26 00:08:38,381 - hybrid_extractor - INFO - ✅ Hybrid extraction complete: 0 facilities, 27.9s
+
+🎉 Hybrid scraping completed!
+📊 Session Statistics:
+   URLs processed: 1
+   Successful extractions: 0
+   Failed extractions: 1
+   Success rate: 0.0%
+   Total facilities found: 0
+   Average facilities per URL: 0.0
+   Total processing time: 27.9s
+   Average time per URL: 27.9s
+   Session duration: 27.9s
+
+🔧 Extraction Method Performance:
+   LLM navigation success rate: 0.0%
+   Schema extraction success rate: 0.0%
+   Regex extraction success rate: 0.0%
+   LLM fallback rate: 0.0%
+
+📁 Output files:
+   JSON: lcca_new_out/hybrid_healthcare_facilities_20250726_000838.json
+
+🤖 Model Configuration:
+   Preference: fast
+   API: OpenRouter
