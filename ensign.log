@@ -1,0 +1,135 @@
+2025-07-26 00:08:51,172 - __main__ - INFO - 🚀 Starting hybrid healthcare facility scraping
+2025-07-26 00:08:51,172 - __main__ - INFO - 🧠 Model preference: fast
+2025-07-26 00:08:51,172 - __main__ - INFO - ✅ Validation: enabled
+2025-07-26 00:08:51,172 - __main__ - INFO - ⏱️  Request delay: 3.0s
+2025-07-26 00:08:51,172 - __main__ - INFO - 📦 Batch size: 1
+2025-07-26 00:08:51,177 - __main__ - INFO - 🌐 Processing 1 URLs
+2025-07-26 00:08:51,177 - __main__ - INFO - 📦 Processing batch 1/1
+2025-07-26 00:08:51,177 - __main__ - INFO - 🎯 Hybrid scraping: https://ensigngroup.net
+2025-07-26 00:08:51,177 - hybrid_extractor - INFO - 🚀 Starting hybrid extraction: https://ensigngroup.net
+2025-07-26 00:08:51,177 - hybrid_extractor - INFO - 🧠 Phase 1: LLM site analysis
+2025-07-26 00:08:51,177 - hybrid_llm_navigator - WARNING - SiteAnalyzer not available or failed (No module named 'crawl4ai.site_analyzer'); falling back to custom logic
+2025-07-26 00:08:51,177 - hybrid_llm_navigator - INFO - 🧠 Analyzing site structure: https://ensigngroup.net
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://ensigngroup.net                                            
+| ✓ | ⏱: 2.16s 
+[SCRAPE].. ◆ https://ensigngroup.net                                            
+| ✓ | ⏱: 0.03s 
+[COMPLETE] ● https://ensigngroup.net                                            
+| ✓ | ⏱: 2.19s 
+2025-07-26 00:09:00,850 - hybrid_llm_navigator - INFO - ✅ Site analysis complete: corporate_chain, 1 targets found
+2025-07-26 00:09:00,911 - hybrid_extractor - INFO - 📋 Selected 2 extraction targets
+2025-07-26 00:09:00,911 - hybrid_extractor - INFO - 🔍 Extracting from: https://ensigngroup.net/company-info/#locations
+[INIT].... → Crawl4AI 0.7.2 
+[INIT].... → Crawl4AI 0.7.2 
+2025-07-26 00:09:01,565 - crawler_manager - INFO - Initialized crawler pool with 2 crawlers
+[FETCH]... ↓ https://ensigngroup.net/company-info/#locations                    
+| ✓ | ⏱: 2.18s 
+[SCRAPE].. ◆ https://ensigngroup.net/company-info/#locations                    
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://ensigngroup.net/company-info/#locations                    
+| ✓ | ⏱: 2.20s 
+2025-07-26 00:09:03,770 - hybrid_llm_navigator - INFO - 🛠️ Generating extraction schema for: https://ensigngroup.net/company-info/#locations
+2025-07-26 00:09:06,944 - hybrid_llm_navigator - WARNING - Failed to parse schema generation response
+[FETCH]... ↓ https://ensigngroup.net/company-info/#locations                    
+| ✓ | ⏱: 1.85s 
+[SCRAPE].. ◆ https://ensigngroup.net/company-info/#locations                    
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://ensigngroup.net/company-info/#locations                    
+| ✓ | ⏱: 1.86s 
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://ensigngroup.net/company-info/#locations                    
+| ✓ | ⏱: 2.05s 
+[SCRAPE].. ◆ https://ensigngroup.net/company-info/#locations                    
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://ensigngroup.net/company-info/#locations                    
+| ✓ | ⏱: 2.06s 
+2025-07-26 00:09:11,284 - schema_based_extractor - INFO - Selected schema 'standard_facility_listing' based on URL pattern
+2025-07-26 00:09:11,284 - schema_based_extractor - INFO - Using schema-based extraction: standard_facility_listing
+[FETCH]... ↓ https://ensigngroup.net/company-info/#locations                    
+| ✓ | ⏱: 0.59s 
+[SCRAPE].. ◆ https://ensigngroup.net/company-info/#locations                    
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://ensigngroup.net/company-info/#locations                    
+| ✓ | ⏱: 0.60s 
+2025-07-26 00:09:11,895 - schema_based_extractor - INFO - Trying regex-based extraction
+2025-07-26 00:09:11,898 - schema_based_extractor - INFO - Regex extraction successful: 1 facilities found
+2025-07-26 00:09:11,980 - hybrid_extractor - INFO - ✅ Found 1 unique facilities using predefined_schema (deduped from 1)
+2025-07-26 00:09:11,980 - hybrid_extractor - INFO - 🔍 Extracting from: https://ensigngroup.net
+[INIT].... → Crawl4AI 0.7.2 
+[FETCH]... ↓ https://ensigngroup.net                                            
+| ✓ | ⏱: 1.93s 
+[SCRAPE].. ◆ https://ensigngroup.net                                            
+| ✓ | ⏱: 0.03s 
+[COMPLETE] ● https://ensigngroup.net                                            
+| ✓ | ⏱: 1.96s 
+2025-07-26 00:09:14,336 - schema_based_extractor - WARNING - No suitable schema found for this page
+2025-07-26 00:09:14,336 - schema_based_extractor - INFO - Trying regex-based extraction
+2025-07-26 00:09:14,340 - schema_based_extractor - INFO - Regex extraction successful: 3 facilities found
+2025-07-26 00:09:14,434 - hybrid_extractor - INFO - ✅ Found 3 unique facilities using predefined_schema (deduped from 3)
+2025-07-26 00:09:14,434 - hybrid_extractor - INFO - 🔍 Phase 4: Validation
+2025-07-26 00:09:14,434 - free_validation - INFO - Validating facility 1/4: Company Info
+2025-07-26 00:09:14,434 - free_validation - ERROR - Validation failed for facility Company Info: 'FreeValidationSystem' object has no attribute '_create_facility_signature'
+2025-07-26 00:09:14,434 - free_validation - INFO - Validating facility 2/4: Careers
+2025-07-26 00:09:14,434 - free_validation - ERROR - Validation failed for facility Careers: 'FreeValidationSystem' object has no attribute '_create_facility_signature'
+2025-07-26 00:09:14,434 - free_validation - INFO - Validating facility 3/4: Careers
+2025-07-26 00:09:14,434 - free_validation - ERROR - Validation failed for facility Careers: 'FreeValidationSystem' object has no attribute '_create_facility_signature'
+2025-07-26 00:09:14,434 - free_validation - INFO - Validating facility 4/4: The Mission
+2025-07-26 00:09:14,434 - free_validation - ERROR - Validation failed for facility The Mission: 'FreeValidationSystem' object has no attribute '_create_facility_signature'
+2025-07-26 00:09:14,434 - hybrid_extractor - INFO - ✅ Hybrid extraction complete: 4 facilities, 23.3s
+
+🎉 Hybrid scraping completed!
+📊 Session Statistics:
+   URLs processed: 1
+   Successful extractions: 1
+   Failed extractions: 0
+   Success rate: 100.0%
+   Total facilities found: 4
+   Average facilities per URL: 4.0
+   Total processing time: 23.3s
+   Average time per URL: 23.3s
+   Session duration: 23.3s
+
+🔧 Extraction Method Performance:
+   LLM navigation success rate: 100.0%
+   Schema extraction success rate: 100.0%
+   Regex extraction success rate: 0.0%
+   LLM fallback rate: 0.0%
+
+📁 Output files:
+   JSON: ensign_out/hybrid_healthcare_facilities_20250726_000914.json
+   CSV: ensign_out/hybrid_healthcare_facilities_20250726_000914.csv
+
+🤖 Model Configuration:
+   Preference: fast
+   API: OpenRouter
+Exception ignored in: <function BaseSubprocessTransport.__del__ at 0x7f78c1183a60>
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/asyncio/base_subprocess.py", line 130, in __del__
+    self.close()
+  File "/usr/lib/python3.13/asyncio/base_subprocess.py", line 107, in close
+    proto.pipe.close()
+  File "/usr/lib/python3.13/asyncio/unix_events.py", line 802, in close
+    self.write_eof()
+  File "/usr/lib/python3.13/asyncio/unix_events.py", line 788, in write_eof
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 827, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 550, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Exception ignored in: <function BaseSubprocessTransport.__del__ at 0x7f78c1183a60>
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/asyncio/base_subprocess.py", line 130, in __del__
+    self.close()
+  File "/usr/lib/python3.13/asyncio/base_subprocess.py", line 107, in close
+    proto.pipe.close()
+  File "/usr/lib/python3.13/asyncio/unix_events.py", line 802, in close
+    self.write_eof()
+  File "/usr/lib/python3.13/asyncio/unix_events.py", line 788, in write_eof
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 827, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 550, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed

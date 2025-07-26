@@ -1,0 +1,5 @@
+name,facility_type,address,city,state,zip_code,phone,email,website,administrator,beds,services_offered,source_url,scraping_date,extraction_method
+Company Info,Healthcare Facility,2714 av-special-heading-h1 cust,,,,,,,,,,https://ensigngroup.net/company-info/#locations,2025-07-26T00:09:11.979795,schema_based
+Careers,Healthcare Facility,50 av-special-heading-h2 cust,,,,8742716636,,,,,,https://ensigngroup.net,2025-07-26T00:09:14.434330,schema_based
+Careers,Healthcare Facility,9 av-special-heading-h2 cust,,,,,,,,,,https://ensigngroup.net,2025-07-26T00:09:14.434344,schema_based
+The Mission,Healthcare Facility,436344 av-special-heading-h2 cust,,,,,,,,,,https://ensigngroup.net,2025-07-26T00:09:14.434347,schema_based
