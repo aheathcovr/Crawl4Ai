@@ -173,14 +173,20 @@ class HybridExtractor:
     
     def _select_best_targets(self, site_structure: SiteStructure) -> List[NavigationTarget]:
         """Select the best targets for extraction based on LLM analysis"""
-        
-        # Sort targets by confidence and expected facility count
+        from urllib.parse import urlparse
+
+        # --- NEW: keep only targets that belong to the same domain (or sub-domain) ---
+        allowed_host = urlparse(site_structure.main_url).netloc.lstrip("www.")
+        filtered_targets = [t for t in site_structure.navigation_targets
+                             if urlparse(t.url).netloc.lstrip("www.").endswith(allowed_host)]
+
+        # Sort remaining targets by confidence and expected facility count
         targets = sorted(
-            site_structure.navigation_targets,
+            filtered_targets,
             key=lambda t: (t.confidence, t.expected_facility_count or 0),
             reverse=True
         )
-        
+
         # Select top targets, but limit to avoid overloading
         max_targets = EXTRACTION_CONFIG["max_targets_corporate"] if site_structure.site_type == "corporate_chain" else EXTRACTION_CONFIG["max_targets_single"]
         selected_targets = targets[:max_targets]
@@ -310,51 +316,52 @@ class HybridExtractor:
     
     async def _extract_with_regex(self, target: NavigationTarget) -> Tuple[List[Dict[str, Any]], str]:
         """Extract using regex patterns"""
-        
+        try:
+            from crawl4ai.extraction_strategy import RegexExtractionStrategy
+            from crawl4ai.html_chunking import HtmlTagChunking  # >=0.8
+        except Exception:
+            RegexExtractionStrategy = None  # type: ignore
+            HtmlTagChunking = None  # type: ignore
+
         async with AsyncWebCrawler(headless=True, verbose=False) as crawler:
-            result = await crawler.arun(url=target.url)
-            
+            # Prefer library preset if available
+            if RegexExtractionStrategy:
+                strategy = RegexExtractionStrategy.presets("healthcare_facility")
+            else:
+                strategy = None
+
+            chunker = None
+            if HtmlTagChunking:
+                chunker = HtmlTagChunking(max_tokens=800, overlap_rate=0.15)
+
+            result = await crawler.arun(url=target.url, extraction_strategy=strategy, chunking_strategy=chunker)
+
             if not result.success:
                 return [], "page_load_failed"
-            
-            # Use comprehensive regex patterns
-            regex_patterns = {
-                "facility_names": r'<h[1-6][^>]*>([^<]*(?:care|center|living|manor|home|facility|community)[^<]*)</h[1-6]>',
-                "phone_numbers": r'\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}',
-                "addresses": r'\d+\s+[A-Za-z0-9\s,.-]+(?:Street|St|Avenue|Ave|Road|Rd|Drive|Dr|Boulevard|Blvd|Lane|Ln|Way|Circle|Cir)',
-                "emails": r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}',
-                "zip_codes": r'\b\d{5}(?:-\d{4})?\b'
-            }
-            
+
             facilities = []
-            html_content = result.html
-            
-            # Extract facility blocks
-            facility_blocks = self._extract_facility_blocks(html_content)
-            
-            for block in facility_blocks:
-                facility_data = {}
-                
-                # Extract data from each block
-                for field, pattern in regex_patterns.items():
-                    matches = re.findall(pattern, block, re.IGNORECASE)
-                    if matches:
-                        if field == "facility_names":
-                            facility_data["name"] = matches[0].strip()
-                        elif field == "phone_numbers":
-                            facility_data["phone"] = matches[0]
-                        elif field == "addresses":
-                            facility_data["address"] = matches[0]
-                        elif field == "emails":
-                            facility_data["email"] = matches[0]
-                        elif field == "zip_codes":
-                            facility_data["zip_code"] = matches[0]
-                
-                if self._is_valid_facility_data(facility_data):
-                    facility_data["source_url"] = target.url
-                    facility_data["extraction_method"] = "regex"
-                    facilities.append(facility_data)
-            
+            if result.extracted_content:
+                try:
+                    facilities_json = json.loads(result.extracted_content)
+                    facilities = facilities_json if isinstance(facilities_json, list) else facilities_json.get("facilities", [])
+                except Exception:
+                    pass
+
+            # Fallback to old regex block parsing if library preset not available or returned nothing
+            if not facilities:
+                html_content = result.html
+                facility_blocks = self._extract_facility_blocks(html_content)
+                regex_name = re.compile(r'<h[1-6][^>]*>([^<]*(?:care|center|living|manor|home|facility|community)[^<]*)</h[1-6]>', re.IGNORECASE)
+                for block in facility_blocks:
+                    name_match = regex_name.search(block)
+                    if not name_match:
+                        continue
+                    facility_data = {"name": name_match.group(1).strip()}
+                    if self._is_valid_facility_data(facility_data):
+                        facility_data["source_url"] = target.url
+                        facility_data["extraction_method"] = "regex"
+                        facilities.append(facility_data)
+
             return facilities, "regex_extraction"
     
     async def _extract_with_llm_fallback(self, target: NavigationTarget) -> Tuple[List[Dict[str, Any]], str]:
@@ -401,30 +408,29 @@ class HybridExtractor:
     
     def _is_valid_facility_data(self, data: Dict[str, Any]) -> bool:
         """Check if extracted data represents a valid facility"""
-        
         if not isinstance(data, dict):
             return False
-        
-        # Must have a name
-        name = data.get("name", "").strip()
+
+        # Must have a name and pass healthcare name detector if available
+        name = (data.get("name") or "").strip()
         if not name or len(name) < 3:
             return False
-        
-        # Skip generic names
-        generic_names = ["facility", "location", "center", "home", "care"]
-        if name.lower() in generic_names:
-            return False
-        
-        # Must have some contact or location info
-        has_contact_info = any([
-            data.get("phone"),
-            data.get("email"),
-            data.get("address"),
-            data.get("city"),
-            data.get("zip_code")
-        ])
-        
-        return has_contact_info
+
+        try:
+            from crawl4ai.detectors import HealthcareNameDetector
+            if not HealthcareNameDetector.is_probable(name):
+                return False
+        except Exception:
+            # Fallback generic filter
+            generic_names = ["facility", "location", "center", "home", "care"]
+            if name.lower() in generic_names:
+                return False
+
+        # Must have at least one contact/location clue
+        if any([data.get(k) for k in ("phone", "email", "address", "city", "zip_code")]):
+            return True
+
+        return False
     
     def _normalize_facility_data(self, data: Dict[str, Any], source_url: str) -> Dict[str, Any]:
         """Normalize facility data to standard format"""
